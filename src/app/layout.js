@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
-
+import Head from "next/head";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsApp from "./components/whatsappbutton";
@@ -71,9 +71,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="tr">
+      <head><script src="https://analytics.ahrefs.com/analytics.js" data-key="5++2hjj3KkIgS9hHlB7RPA" async></script></head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        
                 <Navbar />
     {/* 👇 JSON-LD buraya */}
     <Script id="ld-json" type="application/ld+json">
