@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://snusist.com
+
+# Sitemaps
+Sitemap: https://snusist.com/sitemap.xml

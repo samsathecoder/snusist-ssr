@@ -1,5 +1,25 @@
 import Link from 'next/link';
 import { blogPosts } from '../data/blog';
+export const metadata = {
+  title: "Snus Blog | Snusist İstanbul",
+  description: "Snus hakkında en güncel bilgileri ve kullanıcı deneyimlerini Snusist blog sayfamızda keşfedin.",
+  openGraph: {
+    title: "Snus Blog | Snusist İstanbul",
+    description: "Snus hakkında en güncel bilgileri ve kullanıcı deneyimlerini Snusist blog sayfamızda keşfedin.",
+    url: "https://snusist.com/blog",
+    siteName: "Snusist",
+    type: "website",
+    images: [
+      {
+        url: "/images/logo.png", // public klasöründen
+        width: 800,
+        height: 600,
+        alt: "Snusist Blog",
+      },
+    ],
+  },
+};
+
 export default function Blog() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-16">

@@ -1,6 +1,30 @@
 import { notFound } from 'next/navigation';
 import { blogPosts } from '../../data/blog';
+export async function generateMetadata({ params }) {
+  const post = blogPosts.find((p) => String(p.id) === params.id);
 
+  if (!post) return {};
+
+  return {
+    title: `${post.title} | Snus Blog İstanbul`,
+    description: post.excerpt || "Snus hakkında detaylı bilgi içeren blog yazısı.",
+    openGraph: {
+      title: `${post.title} | Snus Blog İstanbul`,
+      description: post.excerpt || "Snus hakkında detaylı bilgi içeren blog yazısı.",
+      url: `https://snusist.com/blog/${post.id}`,
+      siteName: "Snusist",
+      type: "article",
+      images: [
+        {
+          url: "/images/logo.png", // istersen her post için özel resim de ekleyebiliriz
+          width: 800,
+          height: 600,
+          alt: post.title,
+        },
+      ],
+    },
+  };
+}
 export default function BlogPost({ params }) {
   const { id } = params;
 
