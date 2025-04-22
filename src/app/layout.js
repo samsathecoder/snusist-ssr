@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 export const metadata = {
-  title: "Snus İstanbul | Snusist | snus Satın Al",
-  description: "Snusist, İstanbul’da orijinal ve kaliteli snus ürünlerini en uygun fiyatlarla sunan lider e-ticaret platformudur. Hemen sipariş verin, aynı gün kargo fırsatını kaçırmayın!",
+  title: "Snus İstanbul | Snusist | Snus | Snus Satın Al",
+  description: "Snusist, İstanbul’da orijinal ve kaliteli snus ürünlerini en uygun fiyatlarla sizlere sunuyoruz. Hemen sipariş verin, kapınıza getirelim!",
   keywords: [
     "snus", 
     "snus satın al", 
@@ -26,7 +26,7 @@ export const metadata = {
     "snusist"
   ],
   openGraph: {
-    title: "Snusist | Snus İstanbul | snus Satın Al",
+    title: "Snusist | Snus İstanbul | Snus | Snus Satın Al",
     description: "İstanbul'da en kaliteli snus ürünlerini Snusist'te bulabilirsiniz. Orijinal ürün garantisi, uygun fiyatlar ve hızlı teslimat!",
     url: "https://snusist.com",
     siteName: "Snusist",

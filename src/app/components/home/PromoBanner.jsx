@@ -33,7 +33,7 @@ export default function PromoBanner() {
           <div className="mt-6">
             <h3 className="text-xl font-bold mb-2">🌟 Google Yorum Bırakın</h3>
             <a
-              href="https://g.page/snusist/review"
+              href="https://g.page/r/CZNEdwEkrb8LEBM/review"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-sm bg-white text-zinc-800 font-semibold py-2 px-4 rounded hover:bg-gray-200 transition"
