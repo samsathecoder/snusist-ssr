@@ -4,3 +4,7 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self';"

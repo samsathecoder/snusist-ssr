@@ -76,7 +76,7 @@ return (
                   animationFillMode: 'both',
                 }}
               >
-                <img
+                <img  loading="lazy" 
         src={`/images/${product.name}-image.jpg`}
         alt={product.name}
         className="w-full h-48 object-contain p-2 bg-white"

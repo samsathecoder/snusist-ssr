@@ -1,13 +1,16 @@
 import { products } from '../../data/products';
 import ProductClient from './ProductClient';
+
+// Static parametreler oluşturuluyor
 export async function generateStaticParams() {
   return products.map((product) => ({
     slug: `${product.id}-${product.name.toLowerCase().replace(/\s+/g, '-')}`,
   }));
 }
 
+// Metadata fonksiyonu, SEO ve sosyal medya bilgilerini ayarlamak için
 export async function generateMetadata({ params }) {
-  const productId = params.slug?.split('-')[0];
+  const productId = params.slug?.split('-')[0]; // slug'dan ID'yi alıyoruz
   const product = products.find((p) => p.id.toString() === productId);
 
   if (!product) {
@@ -34,11 +37,14 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function Page({ params }) {
-  const productId = params.slug?.split('-')[0];
+// Sayfa fonksiyonu, ürün bilgilerini göstermek için
+export default async function Page({ params }) {
+  const productId = params.slug?.split('-')[0]; // slug'dan ürün ID'sini alıyoruz
   const product = products.find((p) => p.id.toString() === productId);
 
-  if (!product) return null; // Alternatif olarak notFound() da çağrılabilir.
+  if (!product) {
+    return <div>Ürün bulunamadı.</div>; // Eğer ürün bulunmazsa bir mesaj gösteriyoruz
+  }
 
   return <ProductClient product={product} />;
 }

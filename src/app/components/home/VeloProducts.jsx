@@ -17,11 +17,13 @@ export default function VeloProducts() {
     <div className="max-w-6xl  mx-auto px-2 py-10">
       {/* Başlık Alanı */}
 <div className="w-full overflow-hidden rounded-xl mb-8">
-  <img
-    src="/images/velo-banner.png"
-    alt="Velo Banner"
-    className="w-full h-42 sm:h-64 md:h-[400px] object-fit sm:object-center rounded-xl"
-  />
+<img 
+  loading="lazy"
+  src="/images/velo-banner.webp" 
+  alt="Velo Banner"
+  className="w-full h-auto sm:h-64 md:h-[400px] object-cover sm:object-center rounded-xl"
+  srcset="/images/velo-banner.webp 1x, /images/velo-banner.webp 2x"
+/>
 </div>
 
       {/* Ürün Kartları */}
@@ -40,7 +42,7 @@ export default function VeloProducts() {
 
   <div className="p-4 flex flex-col flex-grow justify-between">
     <div>
-      <h3 className="text-base font-bold text-zinc-800">{product.name}</h3>
+      <h2 className="text-base font-bold text-zinc-800">{product.name}</h2>
       <p className="text-sm text-zinc-500">{product.price}₺</p>
 
       {/* ⭐ Rastgele yıldızlar */}

@@ -17,11 +17,22 @@ export default function CategoryShowcase() {
       href={`/categories/${category}`}
       className="group relative h-64 overflow-hidden rounded-xl"
     >
-      <img
-        src={`images/${category}-category-image.png`}
-        alt={category}
-        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-200"
-      />
+<picture>
+  <source 
+    srcset={`images/${category}-category-image.webp`} 
+    type="image/webp"
+  />
+  <source 
+    srcset={`images/${category}-category-image.png`} 
+    type="image/png"
+  />
+  <img
+    loading="lazy"
+    src={`images/${category}-category-image.png`} 
+    alt={category}
+    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-200"
+  />
+</picture>
     </Link>
   ))}
 </div>

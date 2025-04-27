@@ -59,11 +59,28 @@ export default function ProductClient({ product }) {
 
       <div className="max-w-5xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <img
-            src={`/images/${product.name}-image.jpg`}
-            alt={product.name}
-            className="w-full h-auto rounded-lg shadow"
-          />
+        <picture>
+  <source
+    srcset={`/images/${product.name}-image-320w.webp 320w, 
+             /images/${product.name}-image-480w.webp 480w, 
+             /images/${product.name}-image-800w.webp 800w`}
+    sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, 800px"
+    type="image/webp"
+  />
+  <source 
+    srcset={`/images/${product.name}-image-320w.jpg 320w, 
+             /images/${product.name}-image-480w.jpg 480w, 
+             /images/${product.name}-image-800w.jpg 800w`}
+    sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, 800px"
+    type="image/jpeg"
+  />
+  <img
+    loading="lazy"
+    src={`/images/${product.name}-image.jpg`}
+    alt={product.name}
+    className="w-full h-auto rounded-lg shadow"
+  />
+</picture>
           <div>
             <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
             <p className="text-xl text-gray-700 mb-2">{product.price}₺</p>

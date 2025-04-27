@@ -27,6 +27,7 @@ export default function HeroSection() {
           <div className="hidden md:block w-full md:w-1/3 mt-8 md:mt-0">
   <div className=" flex justify-center items-center h-64">
     <img
+     loading="lazy" 
       src="/images/snusist-logo.png"
       alt="snusist-logo"
       className="max-h-full max-w-full object-fit"

@@ -72,7 +72,7 @@ export default function Navbar() {
           </div>
 
           {/* Hamburger Menü (Mobil) */}
-          <button className="sm:hidden text-gray-800" onClick={() => setIsOpen(!isOpen)}>
+          <button aria-label="Açılır menüyü aç" className="sm:hidden text-gray-800  " onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
