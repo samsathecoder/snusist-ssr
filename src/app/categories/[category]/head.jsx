@@ -1,14 +1,21 @@
 // app/categories/[category]/head.jsx
 import React from 'react';
-import { products } from '../../data/products';
+import { products, categories } from '../../data/products';
+
+// Kategori adını URL'ye uygun hale getirme
+const encodeCategory = (category) => {
+  return encodeURIComponent(category); // & gibi özel karakterleri encode eder
+};
+
 export async function generateStaticParams() {
-    return categories.map((category) => ({
-      category,
-    }));
-  }
+  return categories.map((category) => ({
+    category,
+  }));
+}
 
 export default function Head({ params }) {
   const category = params.category;
+  const encodedCategory = encodeCategory(category); // encode edilen kategori adı
   const filteredProducts = products.filter((p) => p.category === category);
 
   const structuredData = {
@@ -16,8 +23,8 @@ export default function Head({ params }) {
     "@type": "CollectionPage",
     name: `${category} Snus Ürünleri`,
     description: `${category} kategorisindeki snus ürünleri Snusist.com'da!`,
-    url: `https://snusist.com/categories/${category}`,
-    image: `https://snusist.com/images/${category}-image.png`,
+    url: `https://snusist.com/categories/${encodedCategory}`, // URL'yi encode edilmiş kategori adıyla oluşturuyoruz
+    image: `https://snusist.com/images/${encodedCategory}-image.png`, // Kategoriyi encode ediyoruz
     mainEntity: filteredProducts.map((product) => ({
       "@type": "Product",
       name: product.name,
