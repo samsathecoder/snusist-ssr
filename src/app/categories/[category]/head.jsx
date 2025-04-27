@@ -1,4 +1,3 @@
-// app/categories/[category]/head.jsx
 import React from 'react';
 import { products, categories } from '../../data/products';
 
@@ -29,7 +28,7 @@ export default function Head({ params }) {
       "@type": "Product",
       name: product.name,
       image: [`https://snusist.com/images/${product.name}-image.jpg`],
-      description: product.description?.replace(/<[^>]+>/g, ''),
+      description: product.description?.replace(/<[^>]+>/g, ''), // HTML etiketlerini temizleme
       sku: product.id,
       brand: { "@type": "Brand", name: "Snusist" },
       offers: {
@@ -37,7 +36,7 @@ export default function Head({ params }) {
         priceCurrency: "TRY",
         price: product.price,
         availability: "https://schema.org/InStock",
-        url: `https://snusist.com/products/${product.id}-${product.name.toLowerCase().replace(/\s+/g, '-')}`
+        url: `https://snusist.com/products/${product.id}-${product.name.toLowerCase().replace(/\s+/g, '-')}` // Ürün URL'si
       }
     }))
   };

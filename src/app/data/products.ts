@@ -319,7 +319,7 @@ export const products: Product[] = [
      name: "Garant Extreme Ice Peach",
      description: "<h2>Garant Extreme Ice Peach – En İyi Fiyatlarla Snus Istanbul’da</h2> <p><strong>GARANT Extreme Ice Peach Mini ile Ferahlatıcı Duyguyu Keşfedin</strong></p><p><strong>Garant Extreme Ice Peach</strong>, tütünsüz nikotin deneyimini benzersiz bir aromayla sunan popüler bir üründür. Yoğun aroması ve dengeli nikotin etkisiyle kullanıcıların favorisidir.</p> <p><strong>Ürün Özellikleri:</strong></p> <ul> <li><strong>Aroma:</strong> Belirgin ve kalıcı tat</li> <li><strong>Nikotin Seviyesi:</strong> Dengeli etki</li> <li><strong>Tütün İçermez:</strong> Bitkisel içerik</li> <li><strong>Saşe Türü:</strong> Slim – konforlu ve görünmez</li> <li><strong>Kullanım Şekli:</strong> Dudak altı, tükürme gerektirmez</li> </ul> <p><strong>Garant Extreme Ice Peach</strong>, <strong>Snus Istanbul</strong> güvencesiyle şimdi sipariş edilebilir. 🚚 İstanbul içi aynı gün hızlı teslimat fırsatını kaçırma!</p>",
     
-    category: "Garant&Grant",
+    category: "Garant",
  
     price: 320,
  
@@ -331,7 +331,7 @@ export const products: Product[] = [
      name: "Garant Extreme Raspberry",
      description: "<h2>Garant Extreme Raspberry – En İyi Fiyatlarla Snus Istanbul’da</h2> <p><strong>GARANT Raspberry Extreme’in Yoğunluğunu Keşfedin</strong></p><p><strong>Garant Extreme Raspberry</strong>, tütünsüz nikotin deneyimini benzersiz bir aromayla sunan popüler bir üründür. Yoğun aroması ve dengeli nikotin etkisiyle kullanıcıların favorisidir.</p> <p><strong>Ürün Özellikleri:</strong></p> <ul> <li><strong>Aroma:</strong> Belirgin ve kalıcı tat</li> <li><strong>Nikotin Seviyesi:</strong> Dengeli etki</li> <li><strong>Tütün İçermez:</strong> Bitkisel içerik</li> <li><strong>Saşe Türü:</strong> Slim – konforlu ve görünmez</li> <li><strong>Kullanım Şekli:</strong> Dudak altı, tükürme gerektirmez</li> </ul> <p><strong>Garant Extreme Raspberry</strong>, <strong>Snus Istanbul</strong> güvencesiyle şimdi sipariş edilebilir. 🚚 İstanbul içi aynı gün hızlı teslimat fırsatını kaçırma!</p>",
     
-    category: "Garant&Grant",
+    category: "Garant",
  
     price: 320,
  
@@ -342,7 +342,7 @@ export const products: Product[] = [
 
      name: "Garant Extreme Mango Lime",
      description: "<h2>Garant Extreme Mango Lime – En İyi Fiyatlarla Snus Istanbul’da</h2> <p><strong>GARANT Mango Lime Extreme’i Keşfedin</strong></p><p><strong>Garant Extreme Mango Lime</strong>, tütünsüz nikotin deneyimini benzersiz bir aromayla sunan popüler bir üründür. Yoğun aroması ve dengeli nikotin etkisiyle kullanıcıların favorisidir.</p> <p><strong>Ürün Özellikleri:</strong></p> <ul> <li><strong>Aroma:</strong> Belirgin ve kalıcı tat</li> <li><strong>Nikotin Seviyesi:</strong> Dengeli etki</li> <li><strong>Tütün İçermez:</strong> Bitkisel içerik</li> <li><strong>Saşe Türü:</strong> Slim – konforlu ve görünmez</li> <li><strong>Kullanım Şekli:</strong> Dudak altı, tükürme gerektirmez</li> </ul> <p><strong>Garant Extreme Mango Lime</strong>, <strong>Snus Istanbul</strong> güvencesiyle şimdi sipariş edilebilir. 🚚 İstanbul içi aynı gün hızlı teslimat fırsatını kaçırma!</p>",
-        category: "Garant&Grant",
+        category: "Garant",
  
     price: 320,
  
@@ -353,7 +353,7 @@ export const products: Product[] = [
 
      name: "Garant Extreme Cherry",
      description: "<h2>Garant Extreme Cherry – En İyi Fiyatlarla Snus Istanbul’da</h2> <p>GARANT Extreme Cherry Mini'nin Yoğun Lezzetini Keşfedin<br/>GARANT Extreme Cherry Mini, kompakt ve pratik formatında yoğun bir kiraz aroması sunan premium bir nikotin poşetidir. Güçlü bir nikotin deneyimi arayanlar için tasarlanmış bu ürün, geleneksel tütün ürünlerine lezzetli ve tatmin edici bir alternatif sunar.</p><p><strong>Garant Extreme Cherry</strong>, tütünsüz nikotin deneyimini benzersiz bir aromayla sunan popüler bir üründür. Yoğun aroması ve dengeli nikotin etkisiyle kullanıcıların favorisidir.</p> <p><strong>Ürün Özellikleri:</strong></p> <ul> <li><strong>Aroma:</strong> Belirgin ve kalıcı tat</li> <li><strong>Nikotin Seviyesi:</strong> Dengeli etki</li> <li><strong>Tütün İçermez:</strong> Bitkisel içerik</li> <li><strong>Saşe Türü:</strong> Slim – konforlu ve görünmez</li> <li><strong>Kullanım Şekli:</strong> Dudak altı, tükürme gerektirmez</li> </ul> <p><strong>Garant Extreme Cherry</strong>, <strong>Snus Istanbul</strong> güvencesiyle şimdi sipariş edilebilir. 🚚 İstanbul içi aynı gün hızlı teslimat fırsatını kaçırma!</p>",
-        category: "Garant&Grant",
+        category: "Garant",
  
     price: 320,
  
@@ -364,7 +364,7 @@ export const products: Product[] = [
 
      name: "Garant Extreme Grape",
      description: "<h2>Garant Extreme Grape – En İyi Fiyatlarla Snus Istanbul’da</h2> <p>GARANT Grape Extreme: Nikotin Deneyiminizi Yükseltin<br/>GARANT Grape Extreme’i keşfedin, ekstra güçlü bir etki arayanlar için tasarlanmış premium bir nikotin poşeti. Nikotin poşetleri dünyasında öne çıkan bu ürün, yoğun üzüm aroması ve güçlü nikotin gücü ile benzersiz bir deneyim sunuyor. İster deneyimli bir kullanıcı olun ister nikotin poşetleri ile yeni tanışan biri, GARANT Grape Extreme size eşsiz bir deneyim vaat ediyor.</p><p><strong>Garant Extreme Grape</strong>, tütünsüz nikotin deneyimini benzersiz bir aromayla sunan popüler bir üründür. Yoğun aroması ve dengeli nikotin etkisiyle kullanıcıların favorisidir.</p> <p><strong>Ürün Özellikleri:</strong></p> <ul> <li><strong>Aroma:</strong> Belirgin ve kalıcı tat</li> <li><strong>Nikotin Seviyesi:</strong> Dengeli etki</li> <li><strong>Tütün İçermez:</strong> Bitkisel içerik</li> <li><strong>Saşe Türü:</strong> Slim – konforlu ve görünmez</li> <li><strong>Kullanım Şekli:</strong> Dudak altı, tükürme gerektirmez</li> </ul> <p><strong>Garant Extreme Grape</strong>, <strong>Snus Istanbul</strong> güvencesiyle şimdi sipariş edilebilir. 🚚 İstanbul içi aynı gün hızlı teslimat fırsatını kaçırma!</p>",
-        category: "Garant&Grant",
+        category: "Garant",
  
     price: 320,
  

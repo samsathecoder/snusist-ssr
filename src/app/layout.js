@@ -5,6 +5,8 @@ import Head from "next/head";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsApp from "./components/whatsappbutton";
+
+// Load fonts using the preload strategy to improve LCP
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -14,6 +16,7 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
 export const metadata = {
   title: "Snus İstanbul | Snusist | Snus | Snus Satın Al",
   description: "Snusist, İstanbul’da orijinal ve kaliteli snus ürünlerini en uygun fiyatlarla sizlere sunuyoruz. Hemen sipariş verin, kapınıza getirelim!",
@@ -32,7 +35,7 @@ export const metadata = {
     siteName: "Snusist",
     images: [
       {
-        url: "/images/snusist-logo.png", // 👈 burada public klasöründen alır
+        url: "/images/snusist-logo.png",
         width: 800,
         height: 600,
         alt: "Snusist Logo",
@@ -45,12 +48,14 @@ export const metadata = {
     card: "summary_large_image",
     title: "Snusist | Snus İstanbul",
     description: "Türkiye'nin en güvenilir snus tedarikçisi. Sipariş ver, hızlı kargoyla kapına gelsin!",
-    images: [      {
-      url: "/images/snusist-logo.png", // 👈 burada public klasöründen alır
-      width: 800,
-      height: 600,
-      alt: "Snusist Logo",
-    },], // görsel ekle
+    images: [
+      {
+        url: "/images/snusist-logo.png",
+        width: 800,
+        height: 600,
+        alt: "Snusist Logo",
+      },
+    ],
   },
   robots: {
     index: true,
@@ -72,31 +77,50 @@ export default function RootLayout({ children }) {
   return (
     <html lang="tr">
       <head>
+        {/* Preload Google Fonts to improve LCP */}
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Geist:wght@400;700&family=Geist+Mono:wght@400&display=swap"
+          as="font"
+          type="font/woff2"
+          crossorigin="anonymous"
+        />
+        
+        {/* Defer Google Tag Manager script to improve performance */}
+        <Script
+          id="gtm-head"
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-NH95Z7XM"
+        />
 
-      <Script id="gtm-head" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-NH95Z7XM');
-          `}
-        </Script>
-        <script src="https://analytics.ahrefs.com/analytics.js" data-key="5++2hjj3KkIgS9hHlB7RPA" async></script></head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        {/* Async Google Analytics */}
+        <script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="5++2hjj3KkIgS9hHlB7RPA"
+          async
+        ></script>
+
+        {/* Other metadata */}
+        <meta
+          name="description"
+          content="Snusist, İstanbul’da orijinal ve kaliteli snus ürünlerini en uygun fiyatlarla sizlere sunuyoruz. Hemen sipariş verin, kapınıza getirelim!"
+        />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {/* GTM NoScript fallback */}
         <noscript>
-          <iframe 
+          <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-NH95Z7XM"
-            height="0" 
-            width="0" 
+            height="0"
+            width="0"
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-                <Navbar />
-    {/* 👇 JSON-LD buraya */}
-    <Script id="ld-json" type="application/ld+json">
+
+        <Navbar />
+
+        {/* JSON-LD structured data */}
+        <Script id="ld-json" type="application/ld+json" strategy="afterInteractive">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Store",
@@ -115,11 +139,15 @@ export default function RootLayout({ children }) {
             ],
           })}
         </Script>
+
+        {/* Main content */}
         {children}
+
+        {/* WhatsApp button */}
         <WhatsApp />
 
+        {/* Footer */}
         <Footer />
-
       </body>
     </html>
   );
