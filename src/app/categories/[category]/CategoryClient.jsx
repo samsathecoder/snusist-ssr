@@ -84,7 +84,7 @@ export default function CategoryClient({ category }) {
                   >
                     <img
                       loading="lazy"
-                      src={`/images/${product.name}-image.jpg`}
+                      src={`/images/${product.name}-image.webp`}
                       alt={product.name}
                       className="w-full h-48 object-contain p-2 bg-white"
                     />

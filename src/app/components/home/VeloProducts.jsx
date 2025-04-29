@@ -33,26 +33,34 @@ export default function VeloProducts() {
   key={product.id}
   href={`/products/${createProductSlug(product)}`} 
   className="bg-white/90 backdrop-blur-md rounded-xl shadow-md overflow-hidden flex flex-col transition hover:shadow-lg"
->
-<picture>
+><picture>
   <source 
-    srcset={`/images/${product.name}-image.webp`} 
-    type="image/webp" 
+    srcSet={`/images/optimized/${product.name}-image-320w.webp 320w,
+             /images/optimized/${product.name}-image-480w.webp 480w,
+             /images/optimized/${product.name}-image-800w.webp 800w`}
+    sizes="(max-width: 320px) 320px,
+           (max-width: 480px) 480px,
+           800px"
+    type="image/webp"
   />
   <source 
-    srcset={`/images/${product.name}-image.webp`} 
-    type="image/jpeg" 
+    srcSet={`/images/optimized/${product.name}-image-320w.webp 320w,
+             /images/optimized/${product.name}-image-480w.webp 480w,
+             /images/optimized/${product.name}-image-800w.webp 800w`}
+    sizes="(max-width: 320px) 320px,
+           (max-width: 480px) 480px,
+           800px"
+    type="image/jpeg"
   />
   <img 
     loading="lazy" 
-    src={`/images/${product.name}-image.webp`} 
+    src={`/images/optimized/${product.name}-image-800w.webp`} 
     alt={`${product.name} - Snus Ürünleri`} 
     className="w-full h-48 object-contain p-2 bg-white"
     width="500" 
     height="300" 
   />
 </picture>
-
   <div className="p-4 flex flex-col flex-grow justify-between">
     <div>
       <h2 className="text-base font-bold text-zinc-800">{product.name}</h2>

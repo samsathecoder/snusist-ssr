@@ -23,11 +23,11 @@ export default function Head({ params }) {
     name: `${category} Snus Ürünleri`,
     description: `${category} kategorisindeki snus ürünleri Snusist.com'da!`,
     url: `https://snusist.com/categories/${encodedCategory}`, // URL'yi encode edilmiş kategori adıyla oluşturuyoruz
-    image: `https://snusist.com/images/${encodedCategory}-image.png`, // Kategoriyi encode ediyoruz
+    image: `https://snusist.com/images/${encodedCategory}-image.webp`, // Kategoriyi encode ediyoruz
     mainEntity: filteredProducts.map((product) => ({
       "@type": "Product",
       name: product.name,
-      image: [`https://snusist.com/images/${product.name}-image.jpg`],
+      image: [`https://snusist.com/images/${product.name}-image.web`],
       description: product.description?.replace(/<[^>]+>/g, ''), // HTML etiketlerini temizleme
       sku: product.id,
       brand: { "@type": "Brand", name: "Snusist" },
