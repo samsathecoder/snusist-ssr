@@ -21,8 +21,14 @@ export default function VeloProducts() {
   loading="lazy" 
   alt="Velo Banner" 
   class="w-full h-auto sm:h-64 md:h-[400px] object-cover sm:object-center rounded-xl" 
-  srcset="/images/velo-banner.webp 1x, /images/velo-banner.webp 2x, /images/velo-banner.webp 3x"
-  src="/images/velo-banner.webp"  
+  src="/images/velo-banner-800.webp"
+  srcset="
+    /images/velo-banner-320.webp 320w,
+    /images/velo-banner-480.webp 480w,
+    /images/velo-banner-800.webp 800w,
+    /images/velo-banner-1024.webp 1024w
+  "
+  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px"
 />
 </div>
 
