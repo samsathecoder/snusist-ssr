@@ -1,3 +1,4 @@
+import { createProductSlug } from '@/lib/slugify';
 import { products } from '../../data/products';
 import ProductClient from './ProductClient';
 
@@ -35,7 +36,9 @@ export async function generateMetadata({ params }) {
       description: `Snus İstanbul'da ${product.name} için en iyi fiyat ve hızlı teslimat.`,
       images: [`/images/${product.name}-image.webp`],
     },
-    slug: slug, // slug'ı metadata'ya ekliyoruz
+    alternates: {
+      canonical: `https://snusist.com/products/${createProductSlug(product)}`, // 👈 Burada canonical doğru ayarlanıyor
+    },
 
   };
 }

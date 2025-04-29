@@ -16,7 +16,10 @@ export const metadata = {
         height: 600,
         alt: "Snusist Blog",
       },
-    ],
+    
+    ],  alternates: {
+      canonical: `https://snusist.com/blog`, // 👈 Burada canonical doğru ayarlanıyor
+    },
   },
 };
 

@@ -27,5 +27,8 @@ export async function generateMetadata({ params }) {
       description: `${capitalized} snus ürünlerini şimdi keşfedin! İstanbul içi teslimat ve güvenli ödeme imkanlarıyla.`,
       images: [imageUrl],
     },
+    alternates: {
+      canonical: `https://snusist.com/categories/${category}`, // 👈 Burada canonical doğru ayarlanıyor
+    },
   };
 }
