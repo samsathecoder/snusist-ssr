@@ -54,7 +54,7 @@ export default function VeloProducts() {
   />
   <img 
     loading="lazy" 
-    src={`/images/optimized/${product.name}-image-800w.webp`} 
+    src={`/images/optimized/${product.name}-image-320w.webp`} 
     alt={`${product.name} - Snus Ürünleri`} 
     className="w-full h-48 object-contain p-2 bg-white"
     width="500" 
