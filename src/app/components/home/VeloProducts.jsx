@@ -18,11 +18,11 @@ export default function VeloProducts() {
       {/* Başlık Alanı */}
 <div className="w-full overflow-hidden rounded-xl mb-8">
 <img 
-  loading="lazy"
-  src="/images/velo-banner.webp" 
-  alt="Velo Banner"
-  className="w-full h-auto sm:h-64 md:h-[400px] object-cover sm:object-center rounded-xl"
-  srcset="/images/velo-banner.webp 1x, /images/velo-banner.webp 2x"
+  loading="lazy" 
+  alt="Velo Banner" 
+  class="w-full h-auto sm:h-64 md:h-[400px] object-cover sm:object-center rounded-xl" 
+  srcset="/images/velo-banner.webp 1x, /images/velo-banner.webp 2x, /images/velo-banner.webp 3x"
+  src="/images/velo-banner.webp"  
 />
 </div>
 
@@ -34,11 +34,24 @@ export default function VeloProducts() {
   href={`/products/${createProductSlug(product)}`} 
   className="bg-white/90 backdrop-blur-md rounded-xl shadow-md overflow-hidden flex flex-col transition hover:shadow-lg"
 >
-  <img
-    src={`/images/${product.name}-image.jpg`}
-    alt={product.name}
-    className="w-full h-48 object-contain p-2 bg-white"
+<picture>
+  <source 
+    srcset={`/images/${product.name}-image.webp`} 
+    type="image/webp" 
   />
+  <source 
+    srcset={`/images/${product.name}-image.webp`} 
+    type="image/jpeg" 
+  />
+  <img 
+    loading="lazy" 
+    src={`/images/${product.name}-image.webp`} 
+    alt={`${product.name} - Snus Ürünleri`} 
+    className="w-full h-48 object-contain p-2 bg-white"
+    width="500" 
+    height="300" 
+  />
+</picture>
 
   <div className="p-4 flex flex-col flex-grow justify-between">
     <div>

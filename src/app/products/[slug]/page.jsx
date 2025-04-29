@@ -26,13 +26,13 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: `${product.name} - Snus İstanbul`,
       description: `${product.name} ürününü şimdi keşfedin. İstanbul'da aynı gün teslimat avantajıyla sipariş verin.`,
-      images: [`/images/${product.name}-image.jpg`],
+      images: [`/images/${product.name}-image.webp`],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${product.name} - Snus İstanbul`,
       description: `Snus İstanbul'da ${product.name} için en iyi fiyat ve hızlı teslimat.`,
-      images: [`/images/${product.name}-image.jpg`],
+      images: [`/images/${product.name}-image.webp`],
     },
   };
 }

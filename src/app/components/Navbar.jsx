@@ -28,7 +28,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
           {/* Sol Logo */}
           <div className="flex items-center sm:space-x-2">
-            <img src="/images/snusist-logo.png" alt="Logo" className="w-8 h-8" />
+            <img src="/images/snusist-logo.png" alt="Logo" className="w-14 h-14" />
             <span className="text-xl font-bold text-gray-900 hidden sm:inline">snusist</span>
           </div>
 

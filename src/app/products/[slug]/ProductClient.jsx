@@ -42,7 +42,7 @@ export default function ProductClient({ product }) {
               "@context": "https://schema.org/",
               "@type": "Product",
               name: product.name,
-              image: [`https://snusist.com/images/${product.name}-image.jpg`],
+              image: [`https://snusist.com/images/${product.name}-image.webp`],
               description: product.description.replace(/<[^>]+>/g, ''),
               brand: {
                 "@type": "Brand",
@@ -71,15 +71,15 @@ export default function ProductClient({ product }) {
     type="image/webp"
   />
   <source 
-    srcset={`/images/${product.name}-image-320w.jpg 320w, 
-             /images/${product.name}-image-480w.jpg 480w, 
-             /images/${product.name}-image-800w.jpg 800w`}
+    srcset={`/images/${product.name}-image-320w.webp 320w, 
+             /images/${product.name}-image-480w.webp 480w, 
+             /images/${product.name}-image-800w.webp 800w`}
     sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, 800px"
     type="image/jpeg"
   />
   <img
     loading="lazy"
-    src={`/images/${product.name}-image.jpg`}
+    src={`/images/${product.name}-image.webp`}
     alt={product.name}
     className="w-full h-auto rounded-lg shadow"
   />
