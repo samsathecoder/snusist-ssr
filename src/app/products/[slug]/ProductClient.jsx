@@ -5,15 +5,15 @@ import { useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import Head from 'next/head';
 import Link from 'next/link';
-
+import { usePathname } from 'next/navigation';
 const tabs = [
   { key: 'detay', label: 'Ürün Detayı' },
   { key: 'teslimat', label: 'Teslimat' },
   { key: 'odeme', label: 'Ödeme Yöntemleri' },
 ];
-
 export default function ProductClient({ product }) {
   const [activeTab, setActiveTab] = useState('detay');
+  const pathname = usePathname();
 
   const tabContent = {
     detay: product.description,
@@ -31,7 +31,10 @@ export default function ProductClient({ product }) {
         <meta property="og:image" content={`https://snusist.com/images/${product.name}-image.jpg`} />
         <meta property="og:type" content="product" />
         <meta property="og:url" content={`https://snusist.com/products/${product.id}-${product.name.toLowerCase().replace(/\s+/g, '-')}`} />
-
+        <link
+    rel="canonical"
+    href={`https://snusist.com${pathname}`}
+  />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

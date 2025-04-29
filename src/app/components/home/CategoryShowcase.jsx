@@ -19,16 +19,16 @@ export default function CategoryShowcase() {
     >
 <picture>
   <source 
-    srcset={`images/${category}-category-image.webp`} 
+    srcset={`/images/${category}-category-image.webp`} 
     type="image/webp"
   />
   <source 
-    srcset={`images/${category}-category-image.png`} 
+    srcset={`/images/${category}-category-image.png`} 
     type="image/png"
   />
   <img
     loading="lazy"
-    src={`images/${category}-category-image.png`} 
+    src={`/images/${category}-category-image.png`} 
     alt={category}
     className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-200"
   />
