@@ -33,7 +33,7 @@ export default function ProductClient({ product }) {
         <meta property="og:url" content={`https://snusist.com/products/${product.id}-${product.name.toLowerCase().replace(/\s+/g, '-')}`} />
         <link
     rel="canonical"
-    href={`https://snusist.com${pathname}`}
+    href={`https://snusist.com/${pathname}`}
   />
         <script
           type="application/ld+json"
