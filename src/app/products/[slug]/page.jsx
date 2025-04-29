@@ -50,7 +50,9 @@ export default async function Page({ params }) {
   }
 
   // generateMetadata tarafından dönen SEO bilgilerini al
-  const metadata = await generateMetadata({ params });
+  const metadata = {
+    slug: `${product.id}-${product.name.toLowerCase().replace(/\s+/g, '-')}`,
+  };
 
   return <ProductClient product={product} metadata={metadata} />;
 }
