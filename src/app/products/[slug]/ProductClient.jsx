@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import Head from 'next/head';
 import Link from 'next/link';
+import { createProductSlug } from  '../../../../lib/slugify' ;
+
 const tabs = [
   { key: 'detay', label: 'Ürün Detayı' },
   { key: 'teslimat', label: 'Teslimat' },
@@ -12,8 +14,8 @@ const tabs = [
 ];
 export default function ProductClient({ product, metadata }) {
   const [activeTab, setActiveTab] = useState('detay');
-  const canonicalUrl = `https://snusist.com/products/${metadata.slug}`;
-
+  const canonicalUrl = `https://snusist.com/products/${createProductSlug(product)}`;
+  console.log("Canonical URL: ", canonicalUrl);
   const tabContent = {
     detay: product.description,
     teslimat: 'Siparişlerin havale ile ücret gönderiminde aynı gün kargoya verilir. 1-3 iş günü içerisinde elinize ulaşır. İstanbul içinde aynı gün teslimat hizmetimiz ve alırken ödeme imkanımız bulunmaktadır.',
@@ -29,9 +31,9 @@ export default function ProductClient({ product, metadata }) {
         <meta property="og:description" content={`${product.name} hakkında detaylı bilgi ve sipariş imkanı.`} />
         <meta property="og:image" content={`https://snusist.com/images/${product.name}-image.jpg`} />
         <meta property="og:type" content="product" />
-        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:url" content={ `https://snusist.com/products/${createProductSlug(product)}`} />
 
-        <link rel="canonical" href={canonicalUrl} />
+        <link rel="canonical" href={ `https://snusist.com/products/${createProductSlug(product)}`} />
 
         <script
           type="application/ld+json"
