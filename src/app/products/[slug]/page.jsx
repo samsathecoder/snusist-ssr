@@ -12,6 +12,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const productId = params.slug?.split('-')[0]; // slug'dan ID'yi alıyoruz
   const product = products.find((p) => p.id.toString() === productId);
+  const slug = `${product.id}-${product.name.toLowerCase().replace(/\s+/g, '-')}`;
 
   if (!product) {
     return {
@@ -34,6 +35,8 @@ export async function generateMetadata({ params }) {
       description: `Snus İstanbul'da ${product.name} için en iyi fiyat ve hızlı teslimat.`,
       images: [`/images/${product.name}-image.webp`],
     },
+    slug: slug, // slug'ı metadata'ya ekliyoruz
+
   };
 }
 
@@ -46,5 +49,8 @@ export default async function Page({ params }) {
     return <div>Ürün bulunamadı.</div>; // Eğer ürün bulunmazsa bir mesaj gösteriyoruz
   }
 
-  return <ProductClient product={product} />;
+  // generateMetadata tarafından dönen SEO bilgilerini al
+  const metadata = await generateMetadata({ params });
+
+  return <ProductClient product={product} metadata={metadata} />;
 }
