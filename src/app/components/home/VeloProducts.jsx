@@ -22,7 +22,7 @@ export default function VeloProducts() {
   alt="Velo Banner" 
   class="w-full h-auto sm:h-64 md:h-[400px] object-cover sm:object-center rounded-xl" 
   src="/images/velo-banner-800.webp"
-  srcset="
+  srcSet="
     /images/velo-banner-320.webp 320w,
     /images/velo-banner-480.webp 480w,
     /images/velo-banner-800.webp 800w,
