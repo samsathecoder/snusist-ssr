@@ -50,7 +50,7 @@ export const metadata = {
     description: "Türkiye'nin en güvenilir snus tedarikçisi. Sipariş ver, hızlı kargoyla kapına gelsin!",
     images: [
       {
-        url: "/images/snusist-logo.png",
+        url: "/images/snusist-logo.webp",
         width: 800,
         height: 600,
         alt: "Snusist Logo",
@@ -77,19 +77,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="tr">
       <head>
-        {/* Preload Google Fonts to improve LCP */}
-        <link
-          rel="preload"
-          href="https://fonts.googleapis.com/css2?family=Geist:wght@400;700&family=Geist+Mono:wght@400&display=swap"
-          as="font"
-          type="font/woff2"
-          crossorigin="anonymous"
-        />
+   
+  
         
         {/* Defer Google Tag Manager script to improve performance */}
         <Script
           id="gtm-head"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           src="https://www.googletagmanager.com/gtm.js?id=GTM-NH95Z7XM"
         />
 
