@@ -1,5 +1,5 @@
-import { products } from '../../../data/products';
-import { createProductSlug } from '@/lib/slugify';
+import { products} from '../../data/products';
+ import { createProductSlug } from '@/lib/slugify';
 import ProductClient from './ProductClient';
 
 // SEO Metadata
