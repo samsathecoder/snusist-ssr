@@ -6,19 +6,15 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { createProductSlug } from '@/lib/slugify';
 
-// URL encode fonksiyonu
-const encodeCategory = (category) => {
-  return encodeURIComponent(category); // & gibi özel karakterleri encode eder
-};
 
-export default function CategoryClient({ category }) {
-  const [selectedCategory, setSelectedCategory] = useState(category || '');
+
+export default function CategoryClient({ slug }) {
+  const [selectedCategory, setSelectedCategory] = useState(slug || '');
 
   const filteredProducts = selectedCategory
     ? products.filter((product) => product.category === selectedCategory)
     : products;
 
-  const handleCategoryClick = (cat) => setSelectedCategory(cat);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
@@ -28,36 +24,36 @@ export default function CategoryClient({ category }) {
           <aside className="md:w-64 w-full">
             <h2 className="text-xl font-semibold mt-12 mb-4">Kategoriler</h2>
             <div className="flex md:flex-col flex-row gap-2 overflow-x-auto md:overflow-visible no-scrollbar">
-              <button
-                onClick={() => handleCategoryClick('')}
-                className={cn(
-                  'px-4 py-2 rounded-lg transition text-sm md:text-base whitespace-nowrap',
-                  'md:border md:border-zinc-300',
-                  selectedCategory === ''
-                    ? 'text-zinc-900 font-bold md:bg-transparent md:border-zinc-400 md:translate-x-0 translate-x-2 duration-300'
-                    : 'text-zinc-500 md:hover:bg-zinc-100 md:border-zinc-200'
-                )}
-                style={{ border: 'none' }}
-              >
-                hepsi
-              </button>
+            <Link
+  href="/categories/"
+  className={cn(
+    'px-4 py-2 rounded-lg transition text-sm md:text-base whitespace-nowrap',
+    'md:border md:border-zinc-300',
+    slug === ''
+      ? 'text-zinc-900 font-bold md:bg-transparent md:border-zinc-400 md:translate-x-0 translate-x-2 duration-300'
+      : 'text-zinc-500 md:hover:bg-zinc-100 md:border-zinc-200'
+  )}
+  style={{ border: 'none' }}
+>
+  hepsi
+</Link>
               {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => handleCategoryClick(cat)}
-                  className={cn(
-                    'px-4 py-2 rounded-lg transition text-sm md:text-base whitespace-nowrap',
-                    'md:border md:border-zinc-300',
-                    selectedCategory === cat
-                      ? 'text-zinc-900 font-bold md:bg-transparent md:border-zinc-400 md:translate-x-0 translate-x-2 duration-300'
-                      : 'text-zinc-500 md:hover:bg-zinc-100 md:border-zinc-200'
-                  )}
-                  style={{
-                    border: 'none',
-                  }}
-                >
-                  {cat}
-                </button>
+         <Link
+         key={cat}
+         href={`/categories/${cat}`}
+         className={cn(
+           'px-4 py-2 rounded-lg transition text-sm md:text-base whitespace-nowrap',
+           'md:border md:border-zinc-300',
+           slug === cat
+             ? 'text-zinc-900 font-bold md:bg-transparent md:border-zinc-400 md:translate-x-0 translate-x-2 duration-300'
+             : 'text-zinc-500 md:hover:bg-zinc-100 md:border-zinc-200'
+         )}
+         style={{
+           border: 'none',
+         }}
+       >
+         {cat}
+       </Link>
               ))}
             </div>
           </aside>

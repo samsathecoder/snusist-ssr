@@ -101,10 +101,7 @@ export default function RootLayout({ children }) {
         ></script>
 
         {/* Other metadata */}
-        <meta
-          name="description"
-          content="Snusist, İstanbul’da orijinal ve kaliteli snus ürünlerini en uygun fiyatlarla sizlere sunuyoruz. Hemen sipariş verin, kapınıza getirelim!"
-        />
+   
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {/* GTM NoScript fallback */}

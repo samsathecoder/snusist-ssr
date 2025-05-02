@@ -7,14 +7,13 @@ export async function generateMetadata({ params }) {
 
   return {
     alternates: {
-      canonical: `https://snusist.com/blog/${blogPosts.id}`, // 👈 Burada canonical doğru ayarlanıyor
+      canonical: `https://snusist.com/blog/${params.id}`, // 👈 Burada canonical doğru ayarlanıyor
     },
     title: `${post.title} | Snus Blog İstanbul`,
     description: post.excerpt || "Snus hakkında detaylı bilgi içeren blog yazısı.",
     openGraph: {
       title: `${post.title} | Snus Blog İstanbul`,
       description: post.excerpt || "Snus hakkında detaylı bilgi içeren blog yazısı.",
-      url: `https://snusist.com/blog/${post.id}`,
       siteName: "Snusist",
       type: "article",
       images: [

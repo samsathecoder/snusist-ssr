@@ -6,7 +6,6 @@ export const metadata = {
   openGraph: {
     title: "Snus Blog | Snusist İstanbul",
     description: "Snus hakkında en güncel bilgileri ve kullanıcı deneyimlerini Snusist blog sayfamızda keşfedin.",
-    url: "https://snusist.com/blog",
     siteName: "Snusist",
     type: "website",
     images: [
