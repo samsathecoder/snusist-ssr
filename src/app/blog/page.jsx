@@ -10,15 +10,16 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/images/logo.png", // public klasöründen
+        url: "/images/snusist-logo.webp", // public klasöründen
         width: 800,
         height: 600,
         alt: "Snusist Blog",
       },
     
-    ],  alternates: {
-      canonical: `https://snusist.com/blog`, // 👈 Burada canonical doğru ayarlanıyor
-    },
+    ],
+  },
+  alternates: {
+    canonical: `https://snusist.com/blog`, // 👈 Burada canonical doğru ayarlanıyor
   },
 };
 
