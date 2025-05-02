@@ -17,6 +17,7 @@ export async function generateMetadata({ params }) {
     title: `${capitalized} Snus Ürünleri - Snus İstanbul`,
     description: `${capitalized} kategorisindeki en kaliteli snus ürünleri Snusist'te! İstanbul içi aynı gün teslimat ile şimdi sipariş verin.`,
     openGraph: {
+      type: "website",
       title: `${capitalized} Snus Ürünleri - Snus İstanbul`,
       description: `Snusist'te ${capitalized} kategorisindeki ürünleri keşfedin. İstanbul içi hızlı teslimat ve uygun fiyat avantajları.`,
       url: `https://snusist.com/categories/${category}`,

@@ -1,19 +1,11 @@
+import { products } from '../../../data/products';
 import { createProductSlug } from '@/lib/slugify';
-import { products } from '../../data/products';
 import ProductClient from './ProductClient';
 
-// Static parametreler oluşturuluyor
-export async function generateStaticParams() {
-  return products.map((product) => ({
-    slug: `${product.id}-${product.name.toLowerCase().replace(/\s+/g, '-')}`,
-  }));
-}
-
-// Metadata fonksiyonu, SEO ve sosyal medya bilgilerini ayarlamak için
+// SEO Metadata
 export async function generateMetadata({ params }) {
-  const productId = params.slug?.split('-')[0]; // slug'dan ID'yi alıyoruz
-  const product = products.find((p) => p.id.toString() === productId);
-  const slug = `${product.id}-${product.name.toLowerCase().replace(/\s+/g, '-')}`;
+  const productId = params.slug.split('-')[0];
+  const product = products.find(p => p.id.toString() === productId);
 
   if (!product) {
     return {
@@ -22,40 +14,69 @@ export async function generateMetadata({ params }) {
     };
   }
 
+  const name = product.name;
+  const slug = createProductSlug(product);
+  const image = `https://snusist.com/images/${name}-image.webp`;
+
   return {
-    title: `${product.name} - Snus İstanbul`,
-    description: `${product.name} hakkında detaylı bilgi ve en iyi fiyat Snusist.com'da. İstanbul içi aynı gün teslimat ve güvenli ödeme seçenekleriyle.`,
+    title: `${name} | Snus İstanbul`,
+    description: `${name} - Snus İstanbul'da hemen sipariş verin!`,
     openGraph: {
-      title: `${product.name} - Snus İstanbul`,
-      description: `${product.name} ürününü şimdi keşfedin. İstanbul'da aynı gün teslimat avantajıyla sipariş verin.`,
-      images: [`/images/${product.name}-image.webp`],
+      title: `${name} | Snus İstanbul`,
+      description: `${name} hakkında detaylı bilgi ve sipariş imkanı.`,
+      images: [image],
+      url: `https://snusist.com/products/${slug}`,
+      type: 'product',
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${product.name} - Snus İstanbul`,
-      description: `Snus İstanbul'da ${product.name} için en iyi fiyat ve hızlı teslimat.`,
-      images: [`/images/${product.name}-image.webp`],
+      title: `${name} | Snus İstanbul`,
+      description: `${name} hakkında detaylı bilgi ve sipariş imkanı.`,
+      images: [image],
     },
     alternates: {
-      canonical: `https://snusist.com/products/${createProductSlug(product)}`, // 👈 Burada canonical doğru ayarlanıyor
+      canonical: `https://snusist.com/products/${slug}`,
     },
-
   };
 }
 
-// Sayfa fonksiyonu, ürün bilgilerini göstermek için
-export default async function Page({ params }) {
-  const productId = params.slug?.split('-')[0]; // slug'dan ürün ID'sini alıyoruz
-  const product = products.find((p) => p.id.toString() === productId);
+// Sayfa bileşeni
+export default async function ProductPage({ params }) {
+  const productId = params.slug.split('-')[0];
+  const product = products.find(p => p.id.toString() === productId);
 
   if (!product) {
-    return <div>Ürün bulunamadı.</div>; // Eğer ürün bulunmazsa bir mesaj gösteriyoruz
+    return <div>Ürün bulunamadı.</div>;
   }
 
-  // generateMetadata tarafından dönen SEO bilgilerini al
-  const metadata = {
-    slug: `${product.id}-${product.name.toLowerCase().replace(/\s+/g, '-')}`,
-  };
+  return (
+    <>
+      {/* Structured Data ayrı bileşen olarak */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            name: product.name,
+            image: [`https://snusist.com/images/${product.name}-image.webp`],
+            description: product.description.replace(/<[^>]+>/g, ''),
+            brand: {
+              "@type": "Brand",
+              name: "Snusist",
+            },
+            offers: {
+              "@type": "Offer",
+              url: `https://snusist.com/products/${createProductSlug(product)}`,
+              priceCurrency: "TRY",
+              price: Number(product.price),
+              availability: "https://schema.org/InStock",
+            },
+          }),
+        }}
+      />
 
-  return <ProductClient product={product} metadata={metadata} />;
+      <ProductClient product={product} />
+    </>
+  );
 }

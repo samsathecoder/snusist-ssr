@@ -8,6 +8,8 @@ export const metadata = {
     canonical: 'https://snusist.com/categories',
   },
   openGraph: {
+    type: "website",
+
     title: 'Tüm Snus Ürünleri - Snus İstanbul',
     description: 'Snusist’teki tüm snus ürünlerini görüntüleyin. Kaliteli markalar, hızlı teslimat.',
     url: 'https://snusist.com/categories',

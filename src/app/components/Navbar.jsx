@@ -39,7 +39,7 @@ export default function Navbar() {
           {/* Menü Linkleri (Desktop) */}
           <div className="hidden sm:flex space-x-6 items-center relative">
             <Link href="/" className="text-gray-800 hover:text-blue-600">Ana Sayfa</Link>
-            <Link href="/categories/Velo" className="text-gray-800 hover:text-blue-600">Ürünler</Link>
+            <Link href="/categories/" className="text-gray-800 hover:text-blue-600">Ürünler</Link>
             <Link href="/blog" className="text-gray-800 hover:text-blue-600">Blog</Link>
 
             <div className="relative">
@@ -117,7 +117,7 @@ export default function Navbar() {
             )}
 
             <Link onClick={() => setIsOpen(false)}   href="/" className="block text-gray-800 hover:text-blue-600">Ana Sayfa</Link>
-            <Link  onClick={() => setIsOpen(false)}  href="/categories/Velo" className="block text-gray-800 hover:text-blue-600">Ürünler</Link>
+            <Link  onClick={() => setIsOpen(false)}  href="/categories/" className="block text-gray-800 hover:text-blue-600">Ürünler</Link>
             <Link onClick={() => setIsOpen(false)}  href="/blog" className="block text-gray-800 hover:text-blue-600">Blog</Link>
 
             <hr className="my-4 border-gray-300" />

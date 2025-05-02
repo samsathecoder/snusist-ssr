@@ -22,39 +22,6 @@ export default function ProductClient({ product, metadata }) {
 
   return (
     <>
-      <Head>
-        <title>{product.name} | Snus İstanbul</title>
-        <meta name="description" content={`${product.name} - Snus İstanbul'da hemen sipariş verin!`} />
-        <meta property="og:title" content={`${product.name} | Snus İstanbul`} />
-        <meta property="og:description" content={`${product.name} hakkında detaylı bilgi ve sipariş imkanı.`} />
-        <meta property="og:image" content={`https://snusist.com/images/${product.name}-image.jpg`} />
-        <meta property="og:type" content="product" />
-
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org/",
-              "@type": "Product",
-              name: product.name,
-              image: [`https://snusist.com/images/${product.name}-image.webp`],
-              description: product.description.replace(/<[^>]+>/g, ''),
-              brand: {
-                "@type": "Brand",
-                name: "Snusist",
-              },
-              offers: {
-                "@type": "Offer",
-                url: `https://snusist.com/products/${product.id}-${product.name.toLowerCase().replace(/\s+/g, '-')}`,
-                priceCurrency: "TRY",
-                price: product.price,
-                availability: "https://schema.org/InStock",
-              },
-            }),
-          }}
-        />
-      </Head>
 
       <div className="max-w-5xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
