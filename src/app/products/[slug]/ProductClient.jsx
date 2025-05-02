@@ -6,7 +6,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import Head from 'next/head';
 import Link from 'next/link';
 import { createProductSlug } from  '../../../../lib/slugify' ;
-
+import ProductStructuredData from './StructedData';
 const tabs = [
   { key: 'detay', label: 'Ürün Detayı' },
   { key: 'teslimat', label: 'Teslimat' },
@@ -22,19 +22,20 @@ export default function ProductClient({ product, metadata }) {
 
   return (
     <>
+      <ProductStructuredData product={product} />
 
       <div className="max-w-5xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <picture>
   <source
-    srcset={`/images/${product.name}-image-320w.webp 320w, 
+    srcSet={`/images/${product.name}-image-320w.webp 320w, 
              /images/${product.name}-image-480w.webp 480w, 
              /images/${product.name}-image-800w.webp 800w`}
     sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, 800px"
     type="image/webp"
   />
   <source 
-    srcset={`/images/${product.name}-image-320w.webp 320w, 
+    srcSet={`/images/${product.name}-image-320w.webp 320w, 
              /images/${product.name}-image-480w.webp 480w, 
              /images/${product.name}-image-800w.webp 800w`}
     sizes="(max-width: 320px) 320px, (max-width: 480px) 480px, 800px"
