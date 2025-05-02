@@ -28,7 +28,7 @@ export default function HeroSection() {
   <div className=" flex justify-center items-center h-64">
     <img
      loading="lazy" 
-      src="/images/snusist-logo.png"
+      src="/images/snusist-logo.webp"
       alt="snusist-logo"
       className="max-h-full max-w-full object-fit"
     />

@@ -1,7 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
-import Head from "next/head";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsApp from "./components/whatsappbutton";
@@ -35,7 +34,7 @@ export const metadata = {
     siteName: "Snusist",
     images: [
       {
-        url: "/images/snusist-logo.png",
+        url: "/images/snusist-logo.webp",
         width: 800,
         height: 600,
         alt: "Snusist Logo",
@@ -77,8 +76,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="tr">
       <head>
-   
-  
+ 
         
         {/* Defer Google Tag Manager script to improve performance */}
         <Script
