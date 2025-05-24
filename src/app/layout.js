@@ -79,12 +79,18 @@ export default function RootLayout({ children }) {
  
         
         {/* Defer Google Tag Manager script to improve performance */}
-        <Script
-          id="gtm-head"
-          strategy="lazyOnload"
-          src="https://www.googletagmanager.com/gtm.js?id=GTM-NH95Z7XM"
+         <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-1L5Z5DKKRB"
+          strategy="afterInteractive"
         />
-
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-1L5Z5DKKRB');
+          `}
+        </Script>
         {/* Async Google Analytics */}
         <script
           src="https://analytics.ahrefs.com/analytics.js"
@@ -96,15 +102,7 @@ export default function RootLayout({ children }) {
    
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* GTM NoScript fallback */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-NH95Z7XM"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
+    
 
         <Navbar />
 
@@ -114,7 +112,7 @@ export default function RootLayout({ children }) {
             "@context": "https://schema.org",
             "@type": "Store",
             name: "Snusist",
-            image: "https://snusist.com/images/og-image.jpg",
+            image: "https://snusist.com/images/snusist-logo.webp",
             "@id": "https://snusist.com",
             url: "https://snusist.com",
             telephone: "+90 546 420 53 66",
