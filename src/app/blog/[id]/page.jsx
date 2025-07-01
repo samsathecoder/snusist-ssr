@@ -1,41 +1,43 @@
-import { notFound } from 'next/navigation';
 import { blogPosts } from '../../data/blog';
-export async function generateMetadata({ params }) {
-  const post = blogPosts.find((p) => String(p.id) === params.id);
+import { createBlogSlug } from '@/lib/slugify';
 
-  if (!post) return {};
-
-  return {
-    alternates: {
-      canonical: `https://snusist.com/blog/${params.id}`, // 👈 Burada canonical doğru ayarlanıyor
-    },
-    title: `${post.title} | Snus Blog İstanbul`,
-    description: post.excerpt || "Snus hakkında detaylı bilgi içeren blog yazısı.",
-    openGraph: {
-      title: `${post.title} | Snus Blog İstanbul`,
-      description: post.excerpt || "Snus hakkında detaylı bilgi içeren blog yazısı.",
-      siteName: "Snusist",
-      type: "article",
-      images: [
-        {
-          url: "/images/logo.png", // istersen her post için özel resim de ekleyebiliriz
-          width: 800,
-          height: 600,
-          alt: post.title,
-        },
-      ],
-    },
-  };
+export async function generateStaticParams() {
+  return blogPosts.map((post) => ({
+    slug: createBlogSlug(post),
+  }));
 }
+// Metadata fonksiyonu, SEO ve sosyal medya bilgilerini ayarlamak için
+// export async function generateMetadata({ params }) {
+//   const post = blogPosts.find(
+//     (p) => createBlogSlug(p) === params.slug
+//   );
+//   if (!post) return {};
+
+//   return {
+//     alternates: {
+//       canonical: `https://snusist.com/blog/${createBlogSlug(post.title)}`, // 👈 Burada canonical doğru ayarlanıyor
+//     },
+//     title: `${post.title} | Snus Blog İstanbul`,
+//     description: post.excerpt || "Snus hakkında detaylı bilgi içeren blog yazısı.",
+//     openGraph: {
+//       title: `${post.title} | Snus Blog İstanbul`,
+//       description: post.excerpt || "Snus hakkında detaylı bilgi içeren blog yazısı.",
+//       siteName: "Snusist",
+//       type: "article",
+//       images: [
+//         {
+//           url: "/images/logo.png", // istersen her post için özel resim de ekleyebiliriz
+//           width: 800,
+//           height: 600,
+//           alt: post.title,
+//         },
+//       ],
+//     },
+//   };
+// }
 export default function BlogPost({ params }) {
-  const { id } = params;
-
-  const post = blogPosts.find((p) => String(p.id) === id); // id sayı olduğu için string'e çeviriyoruz
-
-  if (!post) {
-    notFound();
-  }
-
+  const slug = params.id;  const post = blogPosts.find((p) => createBlogSlug(p) === slug);
+ 
   return (
     <div className="max-w-3xl mx-auto px-4 py-16">
       <h1 className="text-4xl font-bold mb-4">{post.title}</h1>

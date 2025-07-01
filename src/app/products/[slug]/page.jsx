@@ -1,19 +1,19 @@
 import { createProductSlug } from '@/lib/slugify';
 import { products } from '../../data/products';
 import ProductClient from './ProductClient';
-
+import slugify from 'slugify';
 // Static parametreler oluşturuluyor
 export async function generateStaticParams() {
   return products.map((product) => ({
-    slug: `${product.id}-${product.name.toLowerCase().replace(/\s+/g, '-')}`,
+    slug: createProductSlug(product),
   }));
 }
-
 // Metadata fonksiyonu, SEO ve sosyal medya bilgilerini ayarlamak için
-export async function generateMetadata({ params }) {
-  const productId = params.slug?.split('-')[0]; // slug'dan ID'yi alıyoruz
-  const product = products.find((p) => p.id.toString() === productId);
-  const slug = `${product.id}-${product.name.toLowerCase().replace(/\s+/g, '-')}`;
+export async function generateMetadata({ params  }) {
+  const slug = params.slug; 
+   const product = products.find(
+    (p) => createProductSlug(p) === slug
+  );
 
   if (!product) {
     return {
@@ -21,6 +21,7 @@ export async function generateMetadata({ params }) {
       description: 'Aradığınız ürün bulunamadı.',
     };
   }
+  const safeProductName = slugify(product.name);
 
   return {
     title: `${product.name} - Snus İstanbul`,
@@ -28,13 +29,13 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: `${product.name} - Snus İstanbul`,
       description: `${product.name} ürününü şimdi keşfedin. İstanbul'da aynı gün teslimat avantajıyla sipariş verin.`,
-      images: [`/images/${product.name}-image.webp`],
+    images: [`/images/${safeProductName}-image.webp`],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${product.name} - Snus İstanbul`,
       description: `Snus İstanbul'da ${product.name} için en iyi fiyat ve hızlı teslimat.`,
-      images: [`/images/${product.name}-image.webp`],
+    images: [`/images/${safeProductName}-image.webp`],
     },
     alternates: {
       canonical: `https://snusist.com/products/${createProductSlug(product)}`, // 👈 Burada canonical doğru ayarlanıyor
@@ -45,8 +46,9 @@ export async function generateMetadata({ params }) {
 
 // Sayfa fonksiyonu, ürün bilgilerini göstermek için
 export default async function Page({ params }) {
-  const productId = params.slug?.split('-')[0]; // slug'dan ürün ID'sini alıyoruz
-  const product = products.find((p) => p.id.toString() === productId);
+  const product = products.find(
+    (p) => createProductSlug(p) === params.slug
+  );
 
   if (!product) {
     return <div>Ürün bulunamadı.</div>; // Eğer ürün bulunmazsa bir mesaj gösteriyoruz

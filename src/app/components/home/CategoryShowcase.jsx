@@ -19,7 +19,7 @@ export default function CategoryShowcase() {
     >
 <picture>
   <source 
-    srcset={`/images/${category}-category-image.webp`} 
+    srcSet={`/images/${category}-category-image.webp`} 
     type="image/webp"
   />
 

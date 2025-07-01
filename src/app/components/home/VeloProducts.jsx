@@ -5,6 +5,7 @@ import { products } from '../../data/products';
 import { FaArrowRight } from 'react-icons/fa';
 import { useMemo } from 'react';
 import { createProductSlug } from '../../../../lib/slugify'
+import { FaWhatsapp } from 'react-icons/fa';
 
 export default function VeloProducts() {
   const veloProducts = products
@@ -80,12 +81,20 @@ export default function VeloProducts() {
       <h2 className="text-base font-bold text-zinc-800">{product.name}</h2>
       <p className="text-sm text-zinc-500">{product.price}₺</p>
 
-      {/* ⭐ Rastgele yıldızlar */}
+                       
       <div className="mt-2 flex text-yellow-400 text-sm">
-  {[...Array(stars)].map((_, index) => (
-    <span key={index}>★</span>
-  ))}
+ 
 </div>
+   <div className="flex justify-center mt-3">
+              <Link
+                href={`https://wa.me/905464205366?text=Merhaba, ${product.name} ürününü sipariş vermek istiyorum.`}
+                target="_blank"
+                className="flex items-center gap-2 bg-green-600 min-w-50 hover:bg-green-700 text-white text-base px-4 py-2 rounded-md transition shadow-md"
+              >
+                <FaWhatsapp size={24} />
+                <span>Hemen Sipariş ver</span>
+              </Link>
+            </div>
     </div>
 
     <span className="mt-3 inline-block text-center text-sm font-medium py-2 px-4 rounded-lg border border-zinc-300 text-zinc-700 bg-zinc-50 hover:bg-zinc-100 transition">

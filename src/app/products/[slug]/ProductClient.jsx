@@ -3,9 +3,8 @@
 
 import { useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
-import Head from 'next/head';
 import Link from 'next/link';
-import { createProductSlug } from  '../../../../lib/slugify' ;
+import CategoryProductsCarousel from '../../components/RelatedProducts';
 import ProductStructuredData from './StructedData';
 const tabs = [
   { key: 'detay', label: 'Ürün Detayı' },
@@ -89,8 +88,10 @@ export default function ProductClient({ product, metadata }) {
               <p>{tabContent[activeTab]}</p>
             )}
           </div>
+                
+
         </div>
-      </div>
+ <CategoryProductsCarousel category={product.category} />      </div>
     </>
   );
 }

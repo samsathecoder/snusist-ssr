@@ -1,5 +1,10 @@
 import Link from 'next/link';
 import { blogPosts } from '../data/blog';
+import { createBlogSlug } from '@/lib/slugify';
+
+
+
+
 export const metadata = {
   title: "Snus Blog | Snusist İstanbul",
   description: "Snus hakkında en güncel bilgileri ve kullanıcı deneyimlerini Snusist blog sayfamızda keşfedin.",
@@ -19,7 +24,7 @@ export const metadata = {
     ],
   },
   alternates: {
-    canonical: `https://snusist.com/blog`, // 👈 Burada canonical doğru ayarlanıyor
+    canonical: `https://snusist.com/blog`, 
   },
 };
 
@@ -37,7 +42,7 @@ export default function Blog() {
               <h2 className="text-xl font-bold mt-2 mb-3">{post.title}</h2>
               <p className="text-gray-600 mb-4">{post.excerpt}</p>
 
-              <Link href={`/blog/${post.id}`} className="text-blue-600 font-semibold hover:underline">
+              <Link href={`/blog/${createBlogSlug(post)}`} className="text-blue-600 font-semibold hover:underline">
                 Yazıyı Oku →
               </Link>
             </div>

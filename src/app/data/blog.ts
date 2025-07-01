@@ -3,7 +3,7 @@ import { BlogPost } from '../../app/types';
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
-    title: "Snus Nedir? Nasıl Kullanılır?",
+    title: "snus nedir nasil kullanilir",
     excerpt: "Snus hakkında merak edilen her şey: Kökeni, kullanımı ve etkileri hakkında detaylı bilgi.",
     content: [
       "Snus, İsveç kökenli bir dumansız tütün ürünüdür. Küçük poşetler halinde gelir ve genellikle üst dudak ile diş etleri arasına yerleştirilerek kullanılır.",
@@ -14,5 +14,5 @@ export const blogPosts: BlogPost[] = [
     ],
     date: "2025-04-19"
   }
-  // Add more blog posts as needed
+ 
 ];
