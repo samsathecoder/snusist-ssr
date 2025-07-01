@@ -6,39 +6,37 @@
 /category/siberia    /categories/Siberia     301
 /category/velo       /categories/Velo     301
 /category-all-products    /categories/Velo    301
-/product-page/velo-mighty-peppermint    /products/3-velo-mighty-peppermint 301 
-/product-page/cuba-black-line-cherry-strong-43mg    /products/35-cuba-cherry-strong 301
-/product-page/velo-mighty-peppermint    /products/3-velo-mighty-peppermint 301 
-/product-page/cuba-black-line-cherry-strong-43mg    /products/35-cuba-cherry-strong 301
-/product-page/pablo-blue-raspberry-snus-istanbul    /products/27-pablo-exclusive-blue-rasperry 301
-/product-page/velo-crispy-peppermint    /products/2-velo-crispy-peppermint 301
-/product-page/cuba-black-line-blueberry-strong    /products/38-cuba-blueberry-strong 301
-/product-page/velo-snus-creamy-latte    /products/16-velo-creamy-latte  301
-/product-page/pablo-exclusive-frosted-mint   /products/40-pablo-exclusive-frosted-mint  301
-/product-page/pablo-kiwi-snus-istanbul   /products/28-pablo-exclusive-kiwi  301
-/product-page/pablo-kiwi-snus-istanbul   /products/28-pablo-exclusive-kiwi  301 
-https://www.snusist.com/post/snus-nedir-istanbul    https://snusist.com/blog/1  301
-/product-page/velo-mango-flame    /products/13-velo-mango-flame  301
-/product-page/pablo-cherry-cold-snus-istanbul   /products/26-pablo-exclusive-cherry-cola  301
-/product-page/velo-icy-cherry     /products/36-velo-cherry-ice  301
-/product-page/killa-bubblegum     /products/23-killa-bubblegum-extra-strong 301
-/product-page/velo-lime-flame     /products/37-velo-lime-flame 301
-/product-page/pablo-ice-cold    /products/43-pablo-ice-cold-danger-strong 301
-/product-page/siberia-80-white-dry-16g       /products/41-siberia--80-white-dry 301
-/product-page/siberia-80-white-dry-slim        /products/42-siberia--80-white-dry-slim  301
-/product-page/killa-blueberry   /products/21-killa-blueberry-extra-strong 301
-/product-page/killa-blueberry   /products/21-killa-blueberry-extra-strong 301
+/blog/1    /blog/snus-nedir-nasil-kullanilir 301
+/products/3-velo-mighty-peppermint /products/velo-mighty-peppermint 301 
+/products/35-cuba-cherry-strong    /products/cuba-cherry-strong 301
+/products/3-velo-mighty-peppermint    /products/velo-mighty-peppermint 301 
+ /products/35-cuba-cherry-strong    /products/cuba-cherry-strong 301
+/products/27-pablo-exclusive-blue-rasperry    /products/pablo-exclusive-blue-rasperry 301
+/products/2-velo-crispy-peppermint    /products/velo-crispy-peppermint 301
+/products/38-cuba-blueberry-strong   /products/cuba-blueberry-strong 301
+/products/16-velo-creamy-latte    /products/velo-creamy-latte  301
+/products/40-pablo-exclusive-frosted-mint   /products/pablo-exclusive-frosted-mint  301
+/products/28-pablo-exclusive-kiwi  /products/pablo-exclusive-kiwi  301
+/products/13-velo-mango-flame    /products/velo-mango-flame  301
+/products/26-pablo-exclusive-cherry-cola   /products/pablo-exclusive-cherry-cola  301
+/products/36-velo-cherry-ice    /products/velo-cherry-ice  301
+     /products/23-killa-bubblegum-extra-strong     /products/killa-bubblegum-extra-strong 301
+/products/37-velo-lime-flame     /products/velo-lime-flame 301
+ /products/43-pablo-ice-cold-danger-strong    /products/pablo-ice-cold-danger-strong 301
+ /products/41-siberia--80-white-dry       /products/siberia--80-white-dry 301
+/products/42-siberia--80-white-dry-slim      /products/siberia--80-white-dry-slim  301
+/products/21-killa-blueberry-extra-strong  /products/killa-blueberry-extra-strong 301
 https://www.snusist.com/product-page/killa-snus-istanbul   https://snusist.com/categories/Killa 301
-/product-page/cuba-black-line-ice-spearmint-strong  /products/39-cuba-ice-spearmint-strong 301
-/product-page/velo-purple-grape   /products/12-velo-purple-grape  301
-/product-page/killa-watermelon-extreme-snus-istanbul  products/25-killa-watermelon-extra-strong 301
-/product-page/killa-extreme-cola /products/22-killa-cola-extra-strong 301
-/product-page/grant-extreme-ice-peach /products/29-garant-extreme-ice-peach 301
-/product-page/garant-extreme-raspberry  /products/30-garant-extreme-raspberry 301
-/product-page/velo-tropical-ice    /products/18-velo-tropical-ice  301
-/product-page/grant-extreme-mango-lime  /products/31-garant-extreme-mango-lime 301
-/product-page/cuba-peach   /products/34-cuba-peach-strong  301
-/product-page/velo-mightypeppermint-intense-slim  /products/6-velo-mighty-peppermint-max 301
+/products/39-cuba-ice-spearmint-strong  /products/cuba-ice-spearmint-strong 301
+/products/12-velo-purple-grape   /products/velo-purple-grape  301
+products/25-killa-watermelon-extra-strong   products/killa-watermelon-extra-strong 301
+ /products/22-killa-cola-extra-strong /products/killa-cola-extra-strong 301
+/products/29-garant-extreme-ice-peach /products/garant-extreme-ice-peach 301
+/products/30-garant-extreme-raspberry  /products/garant-extreme-raspberry 301
+/products/18-velo-tropical-ice    /products/velo-tropical-ice  301
+/products/31-garant-extreme-mango-lime /products/garant-extreme-mango-lime 301
+/products/34-cuba-peach-strong    /products/cuba-peach-strong  301
+/products/6-velo-mighty-peppermint-max  /products/velo-mighty-peppermint-max 301
 
 
 
