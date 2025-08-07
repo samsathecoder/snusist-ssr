@@ -34,7 +34,8 @@ export default function Navbar() {
           </div>
 
           {/* Ortadaki snusist sadece mobilde */}
-          <div className="text-xl font-bold text-gray-900 sm:hidden">snusist</div>
+          <div className="text-xl font-bold text-gray-900 sm:hidden">   <Link href="/" className="text-gray-800 hover:text-blue-600">snusist</Link>
+          </div>
 
           {/* Menü Linkleri (Desktop) */}
           <div className="hidden sm:flex space-x-6 items-center relative">

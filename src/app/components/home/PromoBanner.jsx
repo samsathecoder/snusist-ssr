@@ -16,7 +16,7 @@ export default function PromoBanner() {
   };
 
   return (
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10 items-center">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 items-center">
 
         {/* Sosyal Medya Alanı */}
         <div className="text-center md:text-left">
@@ -33,7 +33,7 @@ export default function PromoBanner() {
           <div className="mt-6">
             <h3 className="text-xl font-bold mb-2">🌟 Google Yorum Bırakın</h3>
             <a
-              href="https://g.page/r/CZNEdwEkrb8LEBM/review"
+              href="https://g.page/r/CdzdgjAUejTrEBM/review"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block text-sm bg-white text-zinc-800 font-semibold py-2 px-4 rounded hover:bg-gray-200 transition"
@@ -53,7 +53,19 @@ export default function PromoBanner() {
           </div>
 
           </div>
+ <div className="grid grid-cols-1 gap-8 text-center md:text-left">
+        {/* İletişim Bölümü */}
+          <div className="flex flex-col  items-center md:items-start">
+            <h4 className="text-lg font-semibold mb-2">Hızlı linkler</h4>
+          <Link href="/categories/" className="text-sm text-gray-300 hover:text-blue-600">Tüm ürünler</Link>
+            <Link href="/categories/Velo" className="text-sm text-gray-300 hover:text-blue-600">Velo Snus</Link>
+            <Link href="/categories/Pablo" className="text-sm text-gray-300 hover:text-blue-600">Pablo Snus</Link>
+            <Link href="/categories/Garant" className="text-sm text-gray-300 hover:text-blue-600">Garant Snus</Link>
+            <Link href="/categories/Cuba" className="text-sm text-gray-300 hover:text-blue-600">Cuba Snus</Link>
 
+          </div>
+
+          </div>
         {/* WhatsApp Sipariş Alanı */}
         <div className="bg-white/10 rounded-xl p-6 shadow-md">
           <h3 className="text-lg font-semibold mb-4">📦 Hızlı Sipariş Ver</h3>

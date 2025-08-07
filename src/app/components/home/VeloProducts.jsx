@@ -85,7 +85,7 @@ export default function VeloProducts() {
       <div className="mt-2 flex text-yellow-400 text-sm">
  
 </div>
-   <div className="flex justify-center mt-3">
+   {/**<div className="flex justify-center mt-3">
               <Link
                 href={`https://wa.me/905464205366?text=Merhaba, ${product.name} ürününü sipariş vermek istiyorum.`}
                 target="_blank"
@@ -94,7 +94,7 @@ export default function VeloProducts() {
                 <FaWhatsapp size={24} />
                 <span>Hemen Sipariş ver</span>
               </Link>
-            </div>
+            </div>**/}
     </div>
 
     <span className="mt-3 inline-block text-center text-sm font-medium py-2 px-4 rounded-lg border border-zinc-300 text-zinc-700 bg-zinc-50 hover:bg-zinc-100 transition">

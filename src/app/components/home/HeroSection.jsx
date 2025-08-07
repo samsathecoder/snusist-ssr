@@ -25,8 +25,8 @@ export default function HeroSection() {
             </p>
           </div>
           <div className="hidden md:block w-full md:w-1/3 mt-8 md:mt-0">
-  <div className=" flex justify-center items-center h-64">
-    <img
+  <div className=" flex justify-center items-center mt-6 h-64">
+    <img 
      loading="lazy" 
       src="/images/snusist-logo.webp"
       alt="snusist-logo"
