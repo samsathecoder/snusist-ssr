@@ -1,7 +1,17 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["*"],
+      "@lib/*": ["lib/*"],
+      "@components/*": ["components/*"],
+      "@types/*": ["types/*"],
+      "@data/*": ["data/*"],
+      "@styles/*": ["styles/*"],
+      "@models/*": ["models/*"],
+       "@StructedData/*": ["StructedData/*"]
     }
-  }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

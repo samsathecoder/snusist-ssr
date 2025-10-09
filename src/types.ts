@@ -1,0 +1,18 @@
+export interface Product {
+  slug: any;
+  title: any;
+  _id: object;
+  name: string;
+  price: number;
+  description: string;
+  category: string;
+  stoktaVar:boolean;
+}
+
+export interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  content: Array<string>;
+  date: string;
+}
