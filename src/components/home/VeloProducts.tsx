@@ -14,9 +14,7 @@ export default function VeloProducts({ products }: Props) {
   return (
     <div className="max-w-6xl mx-auto px-2 py-10">
       {/* Başlık */}
-      <div className="w-full overflow-hidden rounded-xl mb-8">
-      
-      </div>
+   <div className="w-full overflow-hidden rounded-xl mb-8"> <picture> <source srcSet="/images/velo-banner-320.webp 320w, /images/velo-banner-480.webp 480w, /images/velo-banner-800.webp 800w, /images/velo-banner-1024.webp 1024w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px" type="image/webp" /> <img src="/images/velo-banner-800.webp" alt="Velo Banner" className="w-full h-auto sm:h-64 md:h-[400px] object-cover sm:object-center rounded-xl" width="1024" height="400" loading="eager" decoding="async" fetchPriority="high" /> </picture> </div>
 
       {/* Ürünler */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
