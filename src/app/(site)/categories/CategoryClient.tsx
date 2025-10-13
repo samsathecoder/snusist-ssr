@@ -35,8 +35,8 @@ export default function CategoryClient({ products }: Props) {
     <>
     
       {/* Page İçeriği */}
-      <div className="max-w-7xl mx-auto px-4 py-10">
-        <div className="flex flex-col md:flex-row gap-10">
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <div className="flex flex-col md:flex-row ">
           {/* Sidebar */}
           <aside className="md:w-64 w-full">
             <h2 className="text-xl font-semibold mt-12 mb-4">Kategoriler</h2>
@@ -66,8 +66,8 @@ export default function CategoryClient({ products }: Props) {
           </aside>
 
           {/* Ürünler */}
-          <section className="flex-1 py-12">
-            <h1 className="text-3xl font-bold mb-6 text-center text-zinc-800">
+          <section className="flex-1 md:py-12 mx-auto">
+            <h1 className="text-3xl font-bold md:mb-12 mt-6 text-center text-zinc-800">
               {slug === "all" ? "Tüm Snus Çeşitleri" : `${slug} Snus Çeşitleri`}
             </h1>
 
