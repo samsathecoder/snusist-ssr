@@ -13,6 +13,15 @@ type Props = {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
+export async function generateStaticParams() {
+  await connectDB();
+
+  const products = await Product.find().select('slug').lean();
+
+  return products.map((product) => ({
+    slug: product.slug,
+  }));
+}
 
 export async function generateMetadata(
   { params, searchParams }: Props,

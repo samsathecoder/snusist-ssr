@@ -11,10 +11,14 @@ interface PageProps {
 }
 
 // ✅ generateMetadata artık aynı tip ile uyumlu
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = params;
-  await connectDB();
+export async function generateMetadata(
+  { params }: PageProps,
+ 
+): Promise<Metadata> {
+  // Dinamik parametreyi al
+  const { slug } = await params;
 
+ 
   const blog = (await Blog.findOne({ slug }).lean()) as IBlog | null;
 
   if (!blog) {
@@ -54,7 +58,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
   };
 }
+// Statik sayfaları üretmek için parametreler
+export async function generateStaticParams() {
+  await connectDB();
 
+  // Tüm blogların sluglarını al
+  const blogs = await Blog.find().select("slug").lean();
+
+  // Her blog için { params: { slug } } döndür
+  return blogs.map((blog) => ({
+    slug: blog.slug,
+  }));
+}
 // ✅ default export, tip olarak PageProps kullanıyor
 export default async function BlogDetailPage({ params }: PageProps) {
   await connectDB();
