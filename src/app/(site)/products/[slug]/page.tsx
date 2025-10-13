@@ -7,9 +7,7 @@ import { getProductsCache, setProductsCache } from '@/lib/cache';
 import type { Metadata, ResolvingMetadata } from 'next';
 import Link from 'next/link';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-export const dynamicParams = true;
+
 type Props = {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
