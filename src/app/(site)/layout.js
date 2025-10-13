@@ -88,9 +88,7 @@ export default async function RootLayout({ children }) {
       _id: p._id?.toString() || "",
     }));
     setProductsCache(allProducts);
-    console.log("✅ Cache dolduruldu, ürün sayısı:", allProducts.length);
   } else {
-    console.log("♻️ Cache kullanıldı, ürün sayısı:", allProducts.length);
   }
   return(
     <html lang="tr">
