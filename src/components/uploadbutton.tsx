@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { UploadButton } from "@/utils/uploadthing";
+import Image from "next/image";
 
 export default function UploadImage({
   onUploadComplete,
@@ -25,7 +26,7 @@ export default function UploadImage({
         />
       ) : (
         <div className="relative w-48 h-48">
-          <img
+          <Image
             src={preview}
             alt="Yüklenen Görsel"
             className="w-full h-full object-cover rounded border"
