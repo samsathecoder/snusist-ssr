@@ -9,6 +9,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { Menu, Search, X } from 'lucide-react';
 import Product, { IProduct } from "@/models/Product"; 
+import Image from 'next/image';
 type Props = { products: IProduct[] };
 
 export default function Navbar({ products = [] }: Props) {
@@ -41,7 +42,7 @@ export default function Navbar({ products = [] }: Props) {
    <nav className="bg-white shadow-md fixed w-full z-50"> <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
           {/* Logo + Ana Sayfa Link */}
           <Link href="/" className="flex items-center space-x-2">
-            <img src="/images/snusist-logo.webp" alt="Logo" className="w-14 h-14" />
+            <Image src="/images/snusist-logo.webp" alt="Logo" className="w-14 h-14" />
             <span className="text-xl font-bold text-gray-900 hidden sm:inline">snusist</span>
           </Link>
 
