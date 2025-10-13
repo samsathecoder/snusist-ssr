@@ -43,9 +43,9 @@ export default function Navbar({ products = [] }: Props) {
           {/* Logo + Ana Sayfa Link */}
           <Link href="/" className="flex items-center space-x-2">
             <Image
-            width={14}
-            height={14}
-            src="/images/snusist-logo.webp" alt="Logo" />
+            width={24}
+            height={24}
+            src="/images/snusist-logo.webp" alt="Logo" className='w-14 h-14' />
             <span className="text-xl font-bold text-gray-900 hidden sm:inline">snusist</span>
           </Link>
 
