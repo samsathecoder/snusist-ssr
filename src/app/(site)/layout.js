@@ -76,6 +76,7 @@ export const metadata = {
     canonical: "https://snusist.com/",
   },
 };
+export const revalidate = 0;
 export default async function RootLayout({ children }) {
   await connectDB(); // DB bağlan
 
@@ -90,6 +91,7 @@ export default async function RootLayout({ children }) {
     setProductsCache(allProducts);
   } else {
   }
+
   return(
     <html lang="tr">
       <head>
