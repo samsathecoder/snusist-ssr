@@ -5,6 +5,11 @@ module.exports = {
   siteUrl: 'https://snusist.com',
   generateRobotsTxt: true,
   sitemapSize: 5000,
+   exclude: [
+    '/admin',        // admin ana sayfa
+    '/admin/*',      // admin alt sayfalar
+  ],
+
   async additionalPaths(config) {
     await connectDB();
     const products = await Product.find().select('slug').lean();
