@@ -120,11 +120,11 @@ export default async function RootLayout({ children }) {
         {/* Other metadata */}
    
       </head>
-       <Navbar products={allProducts || []} />
+ 
 
       <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
     
-
+      <Navbar products={allProducts || []} />
 -
        
         {/* JSON-LD structured data */}

@@ -5,6 +5,7 @@ import ProductClient from './ProductClient';
 import ProductStructuredData from './StructedData';
 import { getProductsCache, setProductsCache } from '@/lib/cache';
 import type { Metadata, ResolvingMetadata } from 'next';
+import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -13,15 +14,6 @@ type Props = {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
-export async function generateStaticParams() {
-  await connectDB();
-
-  const products = await Product.find().select('slug').lean();
-
-  return products.map((product) => ({
-    slug: product.slug.toLowerCase(), 
-  }));
-}
 
 export async function generateMetadata(
   { params, searchParams }: Props,
@@ -30,7 +22,6 @@ export async function generateMetadata(
   // Dinamik parametreyi al
   const { slug } = await params;
 
-  const previousImages = (await parent).openGraph?.images || [];
 await connectDB();
   const product = await Product.findOne({ slug }).lean();
 
@@ -74,8 +65,35 @@ await connectDB();
 export default async function Page(   { params, searchParams }: Props,) {
   await connectDB();
   const product = await Product.findOne({ slug: (await params).slug }).lean();
-  if (!product) return <div>Ürün bulunamadı.</div>;
+if (!product) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen text-center p-8">
+        <h1 className="text-3xl font-bold text-red-600 mb-4">Ürün bulunamadı</h1>
+        <p className="text-gray-700 mb-6">
+          Aradığınız ürün mevcut değil veya kaldırılmış olabilir.
+        </p>
 
+        {/* Buton */}
+        <Link
+          href="/categories"
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-lg font-semibold"
+        >
+          Ürünlerimizi İnceleyin
+        </Link>
+
+        {/* 2 saniye sonra otomatik yönlendirme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              setTimeout(() => {
+                window.location.href = '/categories';
+              }, 2000);
+            `,
+          }}
+        />
+      </div>
+    );
+  }
   let allProducts = getProductsCache();
   if (!allProducts) {
     const allProductsFromDB = await Product.find({}).lean().exec();
