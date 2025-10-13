@@ -3,11 +3,15 @@
 import Link from 'next/link';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 import PromoBanner from './home/PromoBanner';
-
-export default function Footer() {
+import { getProductsCache } from '@/lib/cache';
+import { IProduct } from '@/models/Product';
+interface FooterProps {
+  allProducts: IProduct[];
+}
+export default function Footer({ allProducts }: FooterProps) {
   return (
     <footer className="bg-gradient-to-bl from-cyan-800 via-blue-950 to-cyan-800 text-white pt-16 ">
-      <PromoBanner />
+<PromoBanner allProducts={allProducts} />
 
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">

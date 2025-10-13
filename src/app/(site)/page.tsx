@@ -5,26 +5,31 @@ import FeatureBanner from "@/components/home/FeatureHighlights";
 import CategoriesSection from "@/components/home/CategoryShowcase";
 import VeloProduct from "@/components/home/VeloProducts";
 import RandomProductCarousel from "@/components/home/RandomProductCarousel";
-import { setProductsCache } from "@/lib/cache";
-import connectDB from "@/lib/mongoose";
+import { getProductsCache, setProductsCache, isProductsCacheFilled } from "@/lib/cache";
 import Product from "@/models/Product";
+import connectDB from "@/lib/mongoose";
 
 
 export default async function HomePage() {
-    await connectDB();
-  const allProductsFromDB = await Product.find({}).lean().exec();
+ await connectDB(); // DB bağlan
 
-
-const allProducts = allProductsFromDB.map(product => ({
-      ...product,
-      _id: product._id?.toString() || "", 
-  
-}));
-  setProductsCache(allProducts); // tip uyumlu
-
+  // Cache'i kontrol et
+  let allProducts = getProductsCache();
+  if (!allProducts || allProducts.length === 0) {
+    const allProductsFromDB = await Product.find({}).lean().exec(); // ✅ await ile çöz
+    allProducts = allProductsFromDB.map((p) => ({
+      ...p,
+      _id: p._id?.toString() || "",
+    }));
+    setProductsCache(allProducts);
+    console.log("✅ Cache dolduruldu, ürün sayısı:", allProducts.length);
+  } else {
+    console.log("♻️ Cache kullanıldı, ürün sayısı:", allProducts.length);
+  }
   return (
     
     <main className="min-h-screen bg-gray-50">
+      
       <HeroSection />
 
       <VeloProduct products={allProducts} />

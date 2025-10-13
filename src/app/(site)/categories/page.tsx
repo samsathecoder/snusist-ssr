@@ -2,7 +2,7 @@
 import React from "react";
 import connectDB from "@/lib/mongoose";
 import Product from "@/models/Product";
-import CategoryClient from "./[slug]/CategoryClient";
+import CategoryClient from "./CategoryClient";
 import StructuredData from "./[slug]/StructedData";
 import { IProduct } from "@/models/Product";
 import type { Metadata } from "next";
@@ -72,26 +72,23 @@ export const metadata: Metadata = {
 export default async function AllCategoriesPage() {
  await connectDB();
 
+  let allProducts: IProduct[] = getProductsCache() || [];
 
-let allProducts = getProductsCache();
-if (!allProducts) {
-  const allProductsFromDB = await Product.find({}).lean().exec();
-
-  // Mongoose objelerini IProduct tipine dönüştür
-allProducts = allProductsFromDB.map(product => ({
-    _id: product._id?.toString(),    
-  title: product.title,
-  slug: product.slug,
-  description: product.description,
-  category: product.category,  
-  seoTitle: product.seoTitle,
-  seoDescription: product.seoDescription,
-  coverImage: product.coverImage,
-  price: product.price,
-}));
-
-  setProductsCache(allProducts); // tip uyumlu
-}
+  if (!allProducts.length) {
+    const productsFromDB = await Product.find({}).lean().exec();
+    allProducts = productsFromDB.map((p) => ({
+      _id: p._id?.toString() || "",
+      title: p.title,
+      slug: p.slug,
+      description: p.description,
+      category: p.category,
+      seoTitle: p.seoTitle,
+      seoDescription: p.seoDescription,
+      coverImage: p.coverImage,
+      price: p.price,
+    }));
+    setProductsCache(allProducts);
+  }
 
   return (
     <>
@@ -99,7 +96,7 @@ allProducts = allProductsFromDB.map(product => ({
       <StructuredData category="" products={allProducts} />
 
       {/* ✅ SSR rendered product list */}
-      <CategoryClient slug="" products={allProducts} />
+      <CategoryClient products={allProducts} />
     </>
   );
 }

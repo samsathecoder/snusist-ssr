@@ -1,7 +1,6 @@
 // app/categories/[slug]/StructuredData.tsx
 import React from "react";
 import { IProduct } from "@/models/Product";
-
 export default function StructuredData({
   category,
   products,

@@ -5,7 +5,7 @@ export default function HeroSection() {
 <div className="relative h-[300px] md:h-[400px] bg-gradient-to-r from-blue-600 to-purple-600 overflow-hidden">
       
       {/* Marquee en üste yerleştirildi */}
-      <div className="mt-16
+      <div className="mt-10
       marquee-container z-30">
         <p className="marquee-text">
           🚀 İstanbul içi aynı gün kargo | 💳 Kapıda ödeme imkanı | ⚡ Aynı gün teslimat hizmeti | 📦 10 adet ve üzeri alımlarda ücretsiz kargo 

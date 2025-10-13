@@ -1,133 +1,72 @@
 // app/categories/[slug]/page.tsx
 import React from "react";
 import connectDB from "@/lib/mongoose";
-import Product from "@/models/Product";
-import CategoryClient from "./CategoryClient";
-import StructuredData from "./StructedData";
-import { IProduct } from "@/models/Product";
-import type { Metadata } from "next";
+import Product, { IProduct } from "@/models/Product"; 
+import CategoryClient from "../CategoryClient";
 import { getProductsCache, setProductsCache } from "@/lib/cache";
+import type { Metadata, ResolvingMetadata } from 'next';
+import StructuredData from "./StructedData";
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
-type Props = { params: { slug: string } };
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // Dinamik parametreyi al
+  const { slug } = await params;
 
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    
+    title: `${slug} Snus - Snus İstanbul`,
+    description: `${slug} kategorisindeki snus ürünlerini keşfedin. Hızlı teslimat ve en uygun fiyat garantisi.`,
+      robots: { index: true, follow: true },
+
+    openGraph: {
+      title: `${slug} Snus - Snus İstanbul`,
+      description: `Snus İstanbul - ${slug} snus ürünleri`,
+      images: [`/images/${slug}-category-image.webp`, ...previousImages],
+      url: `https://snusist.com/categories/${slug}`,
+    },
+  };
+}
+// Static params (SSG)
 export async function generateStaticParams() {
   await connectDB();
   const categories = (await Product.distinct("category")) as string[];
   return categories.map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-    const slug = params?.slug ?? "";
-  const category = slug;
-
-  const siteName = "Snus İstanbul";
-  const baseUrl = "https://snusist.com";
-  const categoryName = category || "all";
-  const imageUrl = `${baseUrl}/images/${
-    category ? `${category}-category-image.webp` : "snusist-logo.webp"
-  }`;
-
-  const title = category
-    ? `${category} Snus - ${siteName}`
-    : `Tüm Snus Markaları - ${siteName}`;
-
-  const description = category
-    ? `${category} snus  – ${siteName}. | Aynı gün teslimat ve en uygun fiyat garantisi snusist.com'da.`
-    : `Tüm snus çeşitleri – ${siteName}. | Aynı gün teslimat ve en uygun fiyat garantisi snusist.com'da.`;
-
-  return {
-    title,
-    description,
-    keywords: [
-      category ? `${category} snus` : "snus çeşitleri",
-      "snus satın al",
-      "snus Türkiye",
-      "snus online",
-      "snus istanbul",
-    ],
-    alternates: {
-      canonical: `${baseUrl}/categories/${categoryName}`,
-    },
-    openGraph: {
-      title,
-      description,
-      url: `${baseUrl}/categories/${categoryName}`,
-      siteName,
-      images: [
-        {
-          url: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: `${category || "Snus"} kategorisi`,
-        },
-      ],
-      locale: "tr_TR",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [imageUrl],
-      creator: "@snusist",
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-        "max-video-preview": -1,
-      },
-    },
-    other: {
-      "og:type": "website",
-      "og:locale": "tr_TR",
-      "og:site_name": siteName,
-      "application-name": siteName,
-      "theme-color": "#ffffff",
-    },
-  };
-}
-
-export default async function CategoryPage({ params }: { params: { slug: string } }) {
+// Page
+export default async function CategoryPage() {
   await connectDB();
 
+  let allProducts: IProduct[] = getProductsCache() || [];
 
-let allProducts = getProductsCache();
-if (!allProducts) {
-  const allProductsFromDB = await Product.find({}).lean().exec();
-
-  // Mongoose objelerini IProduct tipine dönüştür
-allProducts = allProductsFromDB.map(product => ({
-    _id: product._id?.toString() || "",    title: product.title,
-  slug: product.slug,
-  description: product.description,
-  category: product.category,
-  seoTitle: product.seoTitle,
-  seoDescription: product.seoDescription,
-  coverImage: product.coverImage,
-  price: product.price,
-}));
-
-
-  setProductsCache(allProducts); // tip uyumlu
-}
-
-  const slug = params?.slug ?? "";
-
-
+  if (!allProducts.length) {
+    const productsFromDB = await Product.find({}).lean().exec();
+    allProducts = productsFromDB.map((p) => ({
+      _id: p._id?.toString() || "",
+      title: p.title,
+      slug: p.slug,
+      description: p.description,
+      category: p.category,
+      seoTitle: p.seoTitle,
+      seoDescription: p.seoDescription,
+      coverImage: p.coverImage,
+      price: p.price,
+    }));
+    setProductsCache(allProducts);
+  }
 
   return (
     <>
-    <CategoryClient slug={slug} products={allProducts} />
-
-      <StructuredData
-        category={slug}
-        products={JSON.parse(JSON.stringify(allProducts))}
-      />
+      <CategoryClient products={allProducts} />
+      <StructuredData products={allProducts} />
     </>
   );
 }

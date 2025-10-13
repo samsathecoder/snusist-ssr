@@ -2,9 +2,13 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { products } from '@/data/products';
+import type { IProduct } from '@/models/Product';
 
-export default function PromoBanner() {
+interface PromoBannerProps {
+  allProducts: IProduct[];
+}
+
+export default function PromoBanner({ allProducts }: PromoBannerProps) {
   const [selectedProduct, setSelectedProduct] = useState('');
 
   const handleOrderClick = () => {
@@ -68,27 +72,27 @@ export default function PromoBanner() {
           </div>
         {/* WhatsApp Sipariş Alanı */}
         <div className="bg-white/10 rounded-xl p-6 shadow-md">
-          <h3 className="text-lg font-semibold mb-4">📦 Hızlı Sipariş Ver</h3>
-          <select
-            value={selectedProduct}
-            onChange={(e) => setSelectedProduct(e.target.value)}
-            className="w-full p-2 mb-4 rounded bg-white text-zinc-900"
-          >
-            <option value="">Bir ürün seçin</option>
-            {products.map((product) => (
-              <option key={product.id} value={product.name}>
-                {product.name}
-              </option>
-            ))}
-          </select>
-          <button
-            onClick={handleOrderClick}
-            disabled={!selectedProduct}
-            className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded transition disabled:opacity-50"
-          >
-            WhatsApp’tan Sipariş Ver 📲
-          </button>
-        </div>
+        <h3 className="text-lg font-semibold mb-4">📦 Hızlı Sipariş Ver</h3>
+        <select
+          value={selectedProduct}
+          onChange={(e) => setSelectedProduct(e.target.value)}
+          className="w-full p-2 mb-4 rounded bg-white text-zinc-900"
+        >
+          <option value="">Bir ürün seçin</option>
+          {allProducts.map((product) => (
+            <option key={product._id} value={product.title}>
+              {product.title}
+            </option>
+          ))}
+        </select>
+        <button
+          onClick={handleOrderClick}
+          disabled={!selectedProduct}
+          className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded transition disabled:opacity-50"
+        >
+          WhatsApp’tan Sipariş Ver 📲
+        </button>
+      </div>
       </div>
   );
 }

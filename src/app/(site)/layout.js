@@ -1,23 +1,29 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Roboto_Mono } from "next/font/google";
+import React from "react";
+
 import "@/globals.css";
 import Script from "next/script";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsApp from "@/components/whatsappbutton";
+import connectDB from "@/lib/mongoose";
+import Product from "@/models/Product";
+import { getProductsCache, setProductsCache, isProductsCacheFilled } from "@/lib/cache";
 
 // Load fonts using the preload strategy to improve LCP
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const robotoMono = Roboto_Mono({
+  variable: "--font-roboto-mono",
   subsets: ["latin"],
 });
+
 
 export const metadata = {
-  title: "velo snus garant snus pablo snus",
+    title: "Snus | Snus İstanbul | Snus Turkey | Snus Satın Al",
   description: "İstanbul’da orijinal ve kaliteli snus ürünlerini en uygun fiyatlarla sizlere sunuyoruz. Hemen sipariş verin, kapınıza getirelim!",
   keywords: [
     "snus", 
@@ -70,9 +76,23 @@ export const metadata = {
     canonical: "https://snusist.com/",
   },
 };
+export default async function RootLayout({ children }) {
+  await connectDB(); // DB bağlan
 
-export default function RootLayout({ children }) {
-  return (
+  // Cache'i kontrol et
+  let allProducts = getProductsCache();
+  if (!allProducts || allProducts.length === 0) {
+    const allProductsFromDB = await Product.find({}).lean().exec(); // ✅ await ile çöz
+    allProducts = allProductsFromDB.map((p) => ({
+      ...p,
+      _id: p._id?.toString() || "",
+    }));
+    setProductsCache(allProducts);
+    console.log("✅ Cache dolduruldu, ürün sayısı:", allProducts.length);
+  } else {
+    console.log("♻️ Cache kullanıldı, ürün sayısı:", allProducts.length);
+  }
+  return(
     <html lang="tr">
       <head>
  
@@ -100,12 +120,13 @@ export default function RootLayout({ children }) {
         {/* Other metadata */}
    
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+       <Navbar products={allProducts || []} />
+
+      <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
     
 
-
-        <Navbar />
-
+-
+       
         {/* JSON-LD structured data */}
         <Script id="ld-json" type="application/ld+json" strategy="afterInteractive">
           {JSON.stringify({
@@ -134,7 +155,7 @@ export default function RootLayout({ children }) {
         <WhatsApp />
 
         {/* Footer */}
-        <Footer />
+<Footer allProducts={allProducts} />
       </body>
     </html>
   );
