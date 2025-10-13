@@ -66,7 +66,7 @@ export default function CategoryClient({ products }: Props) {
           </aside>
 
           {/* Ürünler */}
-          <section className="flex-1 py-28">
+          <section className="flex-1 py-12">
             <h1 className="text-3xl font-bold mb-6 text-center text-zinc-800">
               {slug === "all" ? "Tüm Snus Çeşitleri" : `${slug} Snus Çeşitleri`}
             </h1>
