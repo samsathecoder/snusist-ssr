@@ -19,7 +19,7 @@ export async function generateStaticParams() {
   const products = await Product.find().select('slug').lean();
 
   return products.map((product) => ({
-    slug: product.slug,
+    slug: product.slug.toLowerCase(), 
   }));
 }
 
