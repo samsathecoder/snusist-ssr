@@ -9,7 +9,8 @@ import WhatsApp from "@/components/whatsappbutton";
 import connectDB from "@/lib/mongoose";
 import Product from "@/models/Product";
 import { getProductsCache, setProductsCache, isProductsCacheFilled } from "@/lib/cache";
-
+export const revalidate = 86400; // 24 saat (günde bir yenile)
+export const dynamic = 'force-static'; // ya da tamamen kaldır
 // Load fonts using the preload strategy to improve LCP
 const inter = Inter({
   variable: "--font-inter",
@@ -76,7 +77,7 @@ export const metadata = {
     canonical: "https://snusist.com/",
   },
 };
-export const revalidate = 0;
+
 export default async function RootLayout({ children }) {
   await connectDB(); // DB bağlan
 
