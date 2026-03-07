@@ -12,25 +12,55 @@ type Props = {
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
+  { params }: Props
 ): Promise<Metadata> {
-  // Dinamik parametreyi al
+
   const { slug } = await params;
 
-  const previousImages = (await parent).openGraph?.images || [];
+  await connectDB();
+
+  const products = await Product.find({ category: slug }).lean();
+
+  const categoryName = slug.charAt(0).toUpperCase() + slug.slice(1);
+
+  const title = `${categoryName} Snus Fiyatları (${products.length} Ürün) | Snus İstanbul`;
+
+  const description =
+    `${categoryName} snus çeşitleri. ${products.length} farklı ürün, aynı gün teslimat ve en uygun fiyat garantisi. Snus İstanbul'da ${categoryName} snus satın alın.`;
 
   return {
-    
-    title: `${slug} Snus - Snus İstanbul`,
-    description: `${slug} kategorisindeki snus ürünlerini keşfedin. Hızlı teslimat ve en uygun fiyat garantisi.`,
-      robots: { index: true, follow: true },
+    title,
+    description,
+
+    alternates: {
+      canonical: `https://snusist.com/categories/${slug}`,
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+    },
 
     openGraph: {
-      title: `${slug} Snus - Snus İstanbul`,
-      description: `Snus İstanbul - ${slug} snus ürünleri`,
-      images: [`/images/${slug}-category-image.webp`, ...previousImages],
+      title,
+      description,
       url: `https://snusist.com/categories/${slug}`,
+      siteName: "Snus İstanbul",
+      images: [
+        {
+          url: `https://snusist.com/images/${slug}-category-image.webp`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      type: "website",
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [`https://snusist.com/images/${slug}-category-image.webp`],
     },
   };
 }
