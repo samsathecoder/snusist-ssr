@@ -26,8 +26,8 @@ export default function StructuredData({
     : `${category} kategorisindeki en popüler snus ürünleri Snusist.com'da! Orijinal ürün garantisi ve hızlı teslimat avantajı ile.`;
 
   const imageUrl = isAll
-    ? "https://snusist.com/images/snusist-logo.webp"
-    : `https://snusist.com/images/${category}-category-image.webp`;
+    ? "https://snusist.com/images/snusist-logo-cat.webp"
+    : `https://snusist.com/images/${category}--category-image.webp`;
 
   const jsonLd = {
     "@context": "https://schema.org",

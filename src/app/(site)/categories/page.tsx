@@ -9,9 +9,9 @@ import type { Metadata } from "next";
 import { getProductsCache, setProductsCache } from "@/lib/cache";
 
 export const metadata: Metadata = {
-  title: "Tüm Snus Markaları - Velo, Pablo, Cuba ve Daha Fazlası | Snus İstanbul",
+  title: "Velo, Pablo, Cuba ve Daha Fazlası | Snus İstanbul",
   description:
-    "Snusist.com’da Velo, Pablo, Cuba ve diğer orijinal snus markalarını keşfedin. Tüm snus çeşitleri, uygun fiyat ve aynı gün teslimat avantajı ile.",
+    "Velo, Pablo, Cuba ve diğer orijinal snus markalarını keşfedin. Tüm snus çeşitleri, uygun fiyat ve aynı gün teslimat avantajı ile.",
   keywords: [
     "snus",
     "velo snus",
@@ -25,14 +25,13 @@ export const metadata: Metadata = {
     canonical: "https://snusist.com/categories",
   },
   openGraph: {
-    title: "Tüm Snus Markaları - Snus İstanbul",
+  title: "Velo, Pablo, Cuba ve Daha Fazlası | Snus İstanbul",
     description:
-      "Snusist’teki tüm snus markalarını keşfedin. Orijinal ürün garantisi, uygun fiyatlar ve hızlı teslimat!",
-    url: "https://snusist.com/categories",
+ "Velo, Pablo, Cuba ve diğer orijinal snus markalarını keşfedin. Tüm snus çeşitleri, uygun fiyat ve aynı gün teslimat avantajı ile.",    url: "https://snusist.com/categories",
     siteName: "Snus İstanbul",
     images: [
       {
-        url: "https://snusist.com/images/snusist-logo.webp",
+        url: "https://snusist.com/images/snusist-logo-cat.webp",
         width: 1200,
         height: 630,
         alt: "Snus İstanbul - Tüm Snus Markaları",
@@ -43,10 +42,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tüm Snus Markaları - Snus İstanbul",
+  title: "Velo, Pablo, Cuba ve Daha Fazlası | Snus İstanbul",
     description:
-      "Velo, Pablo, Cuba ve diğer popüler snus markaları Snusist’te! Aynı gün teslimat avantajı ile orijinal ürünler.",
-    images: ["https://snusist.com/images/snusist-logo.webp"],
+ "Velo, Pablo, Cuba ve diğer orijinal snus markalarını keşfedin. Tüm snus çeşitleri, uygun fiyat ve aynı gün teslimat avantajı ile.",    images: ["https://snusist.com/images/snusist-logo.webp"],
     creator: "@snusist",
   },
   robots: {

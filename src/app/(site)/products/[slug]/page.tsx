@@ -45,14 +45,14 @@ await connectDB();
   const image = product.coverImage || `${baseUrl}/images/snusist-logo.webp`;
 
   return {
-    title: `${product.title} - ${siteName}`,
+    title: `${product.title}`,
     description: `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
     alternates: { canonical },
       robots: { index: true, follow: true },
 
     openGraph: {
-      title: `${product.title} - ${siteName}`,
-      description: `${product.title} ürününü keşfedin.`,
+      title: `${product.title} `,
+      description: `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
       url: canonical,
       siteName,
       locale: 'tr_TR',
@@ -61,8 +61,8 @@ await connectDB();
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${product.title} - ${siteName}`,
-      description: `${product.title} ürününü keşfedin.`,
+      title: `${product.title} `,
+      description: `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
       images: [image],
     },
   };

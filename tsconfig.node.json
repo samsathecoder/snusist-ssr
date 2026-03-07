@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["node"], 
     "target": "ES2015",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": true,

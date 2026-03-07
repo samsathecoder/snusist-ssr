@@ -29,7 +29,7 @@ export default function CategoryClient({ products }: Props) {
     ? `Tüm snus çeşitleri – ${siteName}. | Aynı gün teslimat ve en uygun fiyat garantisi snusist.com'da.`
     : `${slug} snus – ${siteName}. | Aynı gün teslimat ve en uygun fiyat garantisi snusist.com'da.`;
   const canonical = `https://snusist.com/categories/${slug}`;
-  const ogImage = `https://snusist.com/images/${slug === "all" ? "snusist-logo.webp" : `${slug}-category-image.webp`}`;
+  const ogImage = `https://snusist.com/images/${slug === "all" ? "snusist-logo-cat.webp" : `${slug}-category-image.webp`}`;
 
   return (
     <>
