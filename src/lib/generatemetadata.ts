@@ -15,7 +15,7 @@ export async function generateProductMetadata(slug: string): Promise<Metadata> {
     };
   }
 
-  const siteName = '| snus';
+  const siteName = '| snusist';
   const baseUrl = 'https://snusist.com';
   const canonical = `${baseUrl}/products/${product.slug}`;
   const image = product.coverImage || `${baseUrl}/images/snusist-logo.webp`;
@@ -25,7 +25,7 @@ export async function generateProductMetadata(slug: string): Promise<Metadata> {
     description: `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
     alternates: { canonical },
     openGraph: {
-      title: `${product.title} - ${siteName}`,
+      title: `${product.title} `,
       description: `${product.title} ürününü keşfedin.`,
       url: canonical,
       siteName,

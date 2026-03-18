@@ -39,7 +39,7 @@ await connectDB();
     };
   }
 
-  const siteName = '| snus';
+  const siteName = 'snusist';
   const baseUrl = 'https://snusist.com';
   const canonical = `${baseUrl}/products/${product.slug}`;
   const image = product.coverImage || `${baseUrl}/images/snusist-logo.webp`;
