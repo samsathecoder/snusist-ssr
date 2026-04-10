@@ -33,6 +33,18 @@ const tabs = [
 export default function ProductClient({ product, allProducts }: ProductClientProps) {
   const [activeTab, setActiveTab] = useState<'detay' | 'teslimat' | 'odeme'>('detay');
 
+  // Product resim path'ini belirle - product title'ından dinamik path oluştur
+  const getProductImage = () => {
+    if (product.coverImage) {
+      return product.coverImage;
+    }
+    // Eğer coverImage yoksa, product.title'ı kullanarak images klasöründen al
+    // Örnek: "Velo Freezing Peppermint" -> "/images/Velo Freezing Peppermint-image.webp"
+    return `/images/${encodeURIComponent(product.title)}-image.webp`;
+  };
+
+  const productImage = getProductImage();
+
   const tabContent: Record<string, string> = {
     detay: product.description,
     teslimat:
@@ -46,20 +58,15 @@ export default function ProductClient({ product, allProducts }: ProductClientPro
 
       <div className="max-w-5xl mx-auto px-4 py-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {product.coverImage ? (
-            <Image
-              src={product.coverImage}
-              alt={product.title}
-              width={600}
-              height={600}
-              className="rounded-lg shadow"
-              priority
-            />
-          ) : (
-            <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
-              Resim bulunamadı
-            </div>
-          )}
+          <Image
+            src={productImage}
+            alt={product.title}
+            width={600}
+            height={600}
+            className="rounded-lg shadow"
+            priority
+            unoptimized
+          />
 
           <div className="flex flex-col justify-center">
             <h1 className="text-3xl font-bold mb-4">{product.title}</h1>

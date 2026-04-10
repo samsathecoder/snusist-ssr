@@ -1,10 +1,10 @@
 // components/StructuredData.tsx
 'use client';
 import React from 'react';
-import { IProduct } from '@/models/Product';
+import { Product } from '@/types';
 
 interface Props {
-  product: IProduct;
+  product: Product;
 }
 
 export default function ProductStructuredData({ product }: Props) {

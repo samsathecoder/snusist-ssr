@@ -1,6 +1,4 @@
 import Link from 'next/link';
-import connectDB from '@/lib/mongoose';
-import Blog from '@/models/Blog';
 
 export const metadata = {
   title: "Snus Blog | Snusist İstanbul",
@@ -37,8 +35,8 @@ export const metadata = {
 
 
 export default async function BlogPage() {
-  await connectDB();
-  const blogs = await Blog.find().sort({ createdAt: -1 }).lean();
+  // Blog data will be added in the future
+  const blogs = [];
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-32">

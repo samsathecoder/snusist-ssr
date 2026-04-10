@@ -1,12 +1,12 @@
 // app/categories/[slug]/StructuredData.tsx
 import React from "react";
-import { IProduct } from "@/models/Product";
+import { Product } from "@/types";
 export default function StructuredData({
   category,
   products,
 }: {
   category?: string;
-  products: IProduct[];
+  products: Product[];
 }) {
   const isAll =
     !category ||

@@ -1,12 +1,9 @@
 // app/categories/page.tsx
 import React from "react";
-import connectDB from "@/lib/mongoose";
-import Product from "@/models/Product";
 import CategoryClient from "./CategoryClient";
 import StructuredData from "./[slug]/StructedData";
-import { IProduct } from "@/models/Product";
+import { getProducts } from "@/lib/products";
 import type { Metadata } from "next";
-import { getProductsCache, setProductsCache } from "@/lib/cache";
 
 export const metadata: Metadata = {
   title: "Velo, Pablo, Cuba ve Daha Fazlası | Snus İstanbul",
@@ -67,26 +64,11 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 3600; // 1 saat ISR
+
 export default async function AllCategoriesPage() {
- await connectDB();
-
-  let allProducts: IProduct[] = getProductsCache() || [];
-
-  if (!allProducts.length) {
-    const productsFromDB = await Product.find({}).lean().exec();
-    allProducts = productsFromDB.map((p) => ({
-      _id: p._id?.toString() || "",
-      title: p.title,
-      slug: p.slug,
-      description: p.description,
-      category: p.category,
-      seoTitle: p.seoTitle,
-      seoDescription: p.seoDescription,
-      coverImage: p.coverImage,
-      price: p.price,
-    }));
-    setProductsCache(allProducts);
-  }
+  // JSON'dan tüm ürünleri al
+  const allProducts = await getProducts();
 
   return (
     <>

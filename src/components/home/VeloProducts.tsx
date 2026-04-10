@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
-import { IProduct } from "@/models/Product";
+import { Product } from "@/types";
 import Image from "next/image";
 
-type Props = { products: IProduct[] };
+type Props = { products: Product[] };
 
 export default function VeloProducts({ products }: Props) {
   const veloProducts = products.filter((p) => p.category === "Velo").slice(0, 15);
@@ -20,7 +20,7 @@ export default function VeloProducts({ products }: Props) {
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {veloProducts.map((product) => (
           <Link
-            key={product._id}
+            key={product.slug}
             href={`/products/${product.slug}`}
             className="bg-white/90 backdrop-blur-md rounded-xl shadow-md overflow-hidden flex flex-col transition hover:shadow-lg"
           >
@@ -28,7 +28,7 @@ export default function VeloProducts({ products }: Props) {
                   width={150}
                   height={220}
               loading="lazy"
-              src={product.coverImage || `/images/${product.slug}.webp`}
+              src={product.coverImage || `/images/${encodeURIComponent(product.title)}-image.webp`}
               alt={product.title}
               className="w-full h-48 object-contain p-2 bg-white"
             />

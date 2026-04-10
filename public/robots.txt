@@ -6,4 +6,4 @@ Allow: /
 Host: https://snusist.com
 
 # Sitemaps
-Sitemap: https://snusist.com/sitemap-0.xml
+Sitemap: https://snusist.com/sitemap.xml

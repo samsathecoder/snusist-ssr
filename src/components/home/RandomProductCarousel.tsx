@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { IProduct } from '@/models/Product';
+import { Product } from '@/types';
 
 type Props = {
-  products: IProduct[];
+  products: Product[];
 };
 
 export default function RandomProductCarousel({ products }: Props) {
-  const [randomProducts, setRandomProducts] = useState<IProduct[]>([]);
+  const [randomProducts, setRandomProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     if (!products || products.length === 0) return;
@@ -30,27 +30,28 @@ export default function RandomProductCarousel({ products }: Props) {
         <div className="grid grid-flow-col auto-cols-[minmax(220px,1fr)] gap-4">
           {randomProducts.map((product) => {
             const stars = Math.floor(Math.random() * 2) + 4;
+            const imageSrc = product.coverImage || `/images/${encodeURIComponent(product.title)}-image.webp`;
 
             return (
               <Link
-                key={product._id} // artık plain string olduğu için sorun yok
+                key={product.slug}
                 href={`/products/${product.slug}`}
                 className="min-w-[200px] flex-shrink-0 bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden"
               >
                 <picture>
                   <source
-                    srcSet= {product.coverImage} 
+                    srcSet={imageSrc}
                     sizes="(max-width: 320px) 320px"
                     type="image/webp"
                   />
                   <source
-                    srcSet= {product.coverImage} 
+                    srcSet={imageSrc}
                     sizes="(max-width: 320px) 320px"
                     type="image/jpeg"
                   />
                   <img
                     loading="lazy"
-                    src= {product.coverImage} 
+                    src={imageSrc}
                     alt={product.title}
                     className="w-full h-auto rounded-lg shadow"
                   />

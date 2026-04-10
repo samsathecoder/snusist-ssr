@@ -1,20 +1,26 @@
 import { NextResponse } from "next/server";
-import Product from "@/models/Product";
-import connectMongo from "@/lib/mongoose"; // mongodb bağlantı fonksiyonun
+import { getProducts } from "@/lib/products";
 
 export async function GET() {
-  await connectMongo();
-  const products = await Product.find().sort({ createdAt: -1 });
-  return NextResponse.json(products);
+  try {
+    const products = await getProducts();
+    return NextResponse.json(products);
+  } catch (error) {
+    console.error('Ürünler getirilemedi:', error);
+    return NextResponse.json({ error: "Ürünler getirilemedi", details: error }, { status: 500 });
+  }
 }
 
 export async function POST(req: Request) {
   try {
-    await connectMongo();
-    const body = await req.json();
-    const newProduct = await Product.create(body);
-    return NextResponse.json(newProduct, { status: 201 });
+    // Local data modification örneği - gerçek uygulamada dosya yazma işlemi gerekli
+    // Şimdilik bu endpoint devre dışı veya sadece warning dönecek
+    return NextResponse.json(
+      { message: "Ürün ekleme local data modu'nda desteklenmiyor. JSON dosyasını düzenleyin." },
+      { status: 405 }
+    );
   } catch (error) {
-    return NextResponse.json({ error: "Ürün eklenemedi", details: error }, { status: 500 });
+    return NextResponse.json({ error: "İşlem başarısız", details: error }, { status: 500 });
   }
 }
+

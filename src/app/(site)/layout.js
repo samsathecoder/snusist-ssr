@@ -1,14 +1,11 @@
 import { Inter, Roboto_Mono } from "next/font/google";
-import React from "react";
 
 import "@/globals.css";
 import Script from "next/script";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsApp from "@/components/whatsappbutton";
-import connectDB from "@/lib/mongoose";
-import Product from "@/models/Product";
-import { getProductsCache, setProductsCache, isProductsCacheFilled } from "@/lib/cache";
+import { getProducts } from "@/lib/products";
 export const revalidate = 86400; // 24 saat (günde bir yenile)
 export const dynamic = 'force-static'; // ya da tamamen kaldır
 // Load fonts using the preload strategy to improve LCP
@@ -79,19 +76,8 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  await connectDB(); // DB bağlan
-
-  // Cache'i kontrol et
-  let allProducts = getProductsCache();
-  if (!allProducts || allProducts.length === 0) {
-    const allProductsFromDB = await Product.find({}).lean().exec(); // ✅ await ile çöz
-    allProducts = allProductsFromDB.map((p) => ({
-      ...p,
-      _id: p._id?.toString() || "",
-    }));
-    setProductsCache(allProducts);
-  } else {
-  }
+  // JSON'dan ürünleri al
+  const allProducts = await getProducts();
 
   return(
     <html lang="tr">
@@ -124,10 +110,8 @@ export default async function RootLayout({ children }) {
  
 
       <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
-    
-      <Navbar products={allProducts || []} />
--
-       
+        <Navbar products={allProducts || []} />
+
         {/* JSON-LD structured data */}
         <Script id="ld-json" type="application/ld+json" strategy="afterInteractive">
           {JSON.stringify({
@@ -156,7 +140,7 @@ export default async function RootLayout({ children }) {
         <WhatsApp />
 
         {/* Footer */}
-<Footer allProducts={allProducts} />
+        <Footer allProducts={allProducts} />
       </body>
     </html>
   );

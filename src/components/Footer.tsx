@@ -3,11 +3,12 @@
 import Link from 'next/link';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 import PromoBanner from './home/PromoBanner';
-import { getProductsCache } from '@/lib/cache';
-import { IProduct } from '@/models/Product';
+import { Product } from '@/types';
+
 interface FooterProps {
-  allProducts: IProduct[];
+  allProducts: Product[];
 }
+
 export default function Footer({ allProducts }: FooterProps) {
   return (
     <footer className="bg-gradient-to-bl from-cyan-800 via-blue-950 to-cyan-800 text-white pt-16 ">

@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import type { IProduct } from '@/models/Product';
+import type { Product } from '@/types';
 
 interface PromoBannerProps {
-  allProducts: IProduct[];
+  allProducts: Product[];
 }
 
 export default function PromoBanner({ allProducts }: PromoBannerProps) {
@@ -80,7 +80,7 @@ export default function PromoBanner({ allProducts }: PromoBannerProps) {
         >
           <option value="">Bir ürün seçin</option>
           {allProducts.map((product) => (
-            <option key={product._id} value={product.title}>
+            <option key={product.slug} value={product.title}>
               {product.title}
             </option>
           ))}

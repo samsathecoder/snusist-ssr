@@ -1,11 +1,9 @@
 // src/lib/metadata.ts
-import connectDB from '@/lib/mongoose';
-import Product from '@/models/Product';
+import { getProductBySlug } from '@/lib/products';
 import type { Metadata } from 'next';
 
 export async function generateProductMetadata(slug: string): Promise<Metadata> {
-  await connectDB();
-  const product = await Product.findOne({ slug }).lean();
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     return {
@@ -15,18 +13,19 @@ export async function generateProductMetadata(slug: string): Promise<Metadata> {
     };
   }
 
-  const siteName = '| snusist';
+  const siteName = 'snusist';
   const baseUrl = 'https://snusist.com';
   const canonical = `${baseUrl}/products/${product.slug}`;
   const image = product.coverImage || `${baseUrl}/images/snusist-logo.webp`;
 
   return {
-    title: `${product.title} - ${siteName}`,
-    description: `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
+    title: product.seoTitle || `${product.title} - ${siteName}`,
+    description: product.seoDescription || `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
     alternates: { canonical },
+    robots: { index: true, follow: true },
     openGraph: {
-      title: `${product.title} `,
-      description: `${product.title} ürününü keşfedin.`,
+      title: product.seoTitle || `${product.title}`,
+      description: product.seoDescription || `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
       url: canonical,
       siteName,
       locale: 'tr_TR',
@@ -35,9 +34,10 @@ export async function generateProductMetadata(slug: string): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${product.title} - ${siteName}`,
-      description: `${product.title} ürününü keşfedin.`,
+      title: product.seoTitle || `${product.title} - ${siteName}`,
+      description: product.seoDescription || `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
       images: [image],
     },
   };
 }
+

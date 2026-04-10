@@ -1,35 +1,30 @@
 // src/app/(site)/products/[slug]/page.tsx
-import connectDB from '@/lib/mongoose';
-import Product from '@/models/Product';
+import { getProductBySlug, getAllProductSlugs, getProducts } from '@/lib/products';
 import ProductClient from './ProductClient';
 import ProductStructuredData from './StructedData';
-import { getProductsCache, setProductsCache } from '@/lib/cache';
 import type { Metadata, ResolvingMetadata } from 'next';
-import Link from 'next/link';
-
+import { notFound } from 'next/navigation';
 
 type Props = {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
+
+// SSG için static paths oluştur - build time'da tüm sayfalar generate edilecek
 export async function generateStaticParams() {
-  await connectDB();
-
-  const products = await Product.find().select('slug').lean();
-
-  return products.map((product) => ({
-    slug: product.slug,
+  const slugs = await getAllProductSlugs();
+  return slugs.map((slug) => ({
+    slug: slug,
   }));
 }
+
+// Dynamic metadata generation - SEO için
 export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Dinamik parametreyi al
   const { slug } = await params;
-
-await connectDB();
-  const product = await Product.findOne({ slug }).lean();
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     return {
@@ -45,14 +40,13 @@ await connectDB();
   const image = product.coverImage || `${baseUrl}/images/snusist-logo.webp`;
 
   return {
-    title: `${product.title}`,
-    description: `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
+    title: product.seoTitle || `${product.title} - Snus Istanbul`,
+    description: product.seoDescription || `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
     alternates: { canonical },
-      robots: { index: true, follow: true },
-
+    robots: { index: true, follow: true },
     openGraph: {
-      title: `${product.title} `,
-      description: `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
+      title: product.seoTitle || `${product.title}`,
+      description: product.seoDescription || `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
       url: canonical,
       siteName,
       locale: 'tr_TR',
@@ -61,62 +55,35 @@ await connectDB();
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${product.title} `,
-      description: `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
+      title: product.seoTitle || `${product.title}`,
+      description: product.seoDescription || `${product.title} orijinal ürün, hızlı teslimat ve en iyi fiyatla snusist.com'da.`,
       images: [image],
     },
   };
 }
 
-export default async function Page(   { params, searchParams }: Props,) {
-  await connectDB();
-  const product = await Product.findOne({ slug: (await params).slug }).lean();
-if (!product) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen text-center p-8">
-        <h1 className="text-3xl font-bold text-red-600 mb-4">Ürün bulunamadı</h1>
-        <p className="text-gray-700 mb-6">
-          Aradığınız ürün mevcut değil veya kaldırılmış olabilir.
-        </p>
+// ISR - 24 saate bir revalidate et
+export const revalidate = 86400;
 
-        {/* Buton */}
-        <Link
-          href="/categories"
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-lg font-semibold"
-        >
-          Ürünlerimizi İnceleyin
-        </Link>
+export default async function Page({ params, searchParams }: Props) {
+  const { slug } = await params;
+  const product = await getProductBySlug(slug);
 
-        {/* 2 saniye sonra otomatik yönlendirme */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              setTimeout(() => {
-                window.location.href = '/categories';
-              }, 2000);
-            `,
-          }}
-        />
-      </div>
-    );
+  if (!product) {
+    notFound();
   }
-  let allProducts = getProductsCache();
-  if (!allProducts) {
-    const allProductsFromDB = await Product.find({}).lean().exec();
-    allProducts = allProductsFromDB.map(p => ({
-      ...p,
-      _id: p._id?.toString(),
-    }));
-    setProductsCache(allProducts);
-  }
+
+  // Related products için diğer ürünleri al
+  const allProducts = await getProducts();
+  const otherProducts = allProducts.filter((p) => p.slug !== slug);
 
   return (
     <>
       <ProductClient
-        product={JSON.parse(JSON.stringify(product))}
-        allProducts={JSON.parse(JSON.stringify(allProducts))}
+        product={product}
+        allProducts={otherProducts}
       />
-      <ProductStructuredData product={JSON.parse(JSON.stringify(product))} />
+      <ProductStructuredData product={product} />
     </>
   );
 }

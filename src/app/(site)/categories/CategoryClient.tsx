@@ -3,12 +3,12 @@
 import React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { IProduct } from "@/models/Product";
+import { Product } from "@/types";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 
 type Props = {
-  products: IProduct[];
+  products: Product[];
 };
 
 export default function CategoryClient({ products }: Props) {
@@ -52,7 +52,7 @@ export default function CategoryClient({ products }: Props) {
               </Link>
               {categories.map((cat) => (
                 <Link
-                  key={categories.indexOf(cat)}
+                  key={cat}
                   href={`/categories/${cat}`}
                   className={cn(
                     "px-4 py-2 rounded-lg transition text-sm md:text-base whitespace-nowrap",
@@ -77,14 +77,14 @@ export default function CategoryClient({ products }: Props) {
               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProducts.map((product) => (
                   <div
-                    key={product._id}
+                    key={product.slug}
                     className="bg-white/90 backdrop-blur-md shadow-md rounded-xl overflow-hidden flex flex-col hover:shadow-lg"
                   >
                     <Image
                       width={150}
                       height={220}
                       loading="lazy"
-                      src={product.coverImage || `/images/${product.slug}.webp`}
+                      src={product.coverImage || `/images/${encodeURIComponent(product.title)}-image.webp`}
                       alt={product.title}
                       className="w-full h-48 object-contain p-2 bg-white"
                     />
