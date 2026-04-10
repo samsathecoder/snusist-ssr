@@ -43,20 +43,14 @@ export default function CategoryProductsCarousel({
               href={`/products/${product.slug}`}
               className="min-w-[200px] flex-shrink-0 bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden"
             >
-              {product.coverImage ? (
-                <Image
-                  src={product.coverImage}
-                  alt={product.title}
-                  width={220}
-                  height={220}
-                  className="rounded-lg shadow"
-                  loading="lazy"
-                />
-              ) : (
-                <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
-                  Resim bulunamadı
-                </div>
-              )}
+              <Image
+                src={product.coverImage || `/images/${encodeURIComponent(product.title)}-image.webp`}
+                alt={product.title}
+                width={220}
+                height={220}
+                className="rounded-lg shadow"
+                loading="lazy"
+              />
               <div className="p-3">
                 <h3 className="text-sm font-semibold text-zinc-800 truncate">{product.title}</h3>
                 <p className="text-xs text-zinc-500">{product.price}₺</p>

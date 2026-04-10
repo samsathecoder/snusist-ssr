@@ -14,12 +14,12 @@ type Props = {
 export default function CategoryClient({ products }: Props) {
   // Slug'ı client-side useParams hook'u ile alıyoruz
   const params = useParams();
-  const slug = params?.slug || "";
+  const slug = (params?.slug as string) || "";
 
   // Ürünleri kategoriye göre filtrele
   const filteredProducts = slug === ""
     ? products
-    : products.filter((p) => p.category === slug);
+    : products.filter((p) => p.category.toLowerCase() === slug.toLowerCase());
 
   const categories = Array.from(new Set(products.map((p) => p.category)));
 
@@ -50,25 +50,28 @@ export default function CategoryClient({ products }: Props) {
               >
                 Hepsi
               </Link>
-              {categories.map((cat) => (
-                <Link
-                  key={cat}
-                  href={`/categories/${cat}`}
-                  className={cn(
-                    "px-4 py-2 rounded-lg transition text-sm md:text-base whitespace-nowrap",
-                    slug === cat ? "text-zinc-900 font-bold" : "text-zinc-500 hover:bg-zinc-100"
-                  )}
-                >
-                  {cat}
-                </Link>
-              ))}
+              {categories.map((cat) => {
+                const lowerCat = cat.toLowerCase();
+                return (
+                  <Link
+                    key={lowerCat}
+                    href={`/categories/${lowerCat}`}
+                    className={cn(
+                      "px-4 py-2 rounded-lg transition text-sm md:text-base whitespace-nowrap",
+                      slug === lowerCat ? "text-zinc-900 font-bold" : "text-zinc-500 hover:bg-zinc-100"
+                    )}
+                  >
+                    {cat}
+                  </Link>
+                );
+              })}
             </div>
           </aside>
 
           {/* Ürünler */}
           <section className="flex-1 md:py-12 mx-auto">
             <h1 className="text-3xl font-bold md:mb-12 mt-6 text-center text-zinc-800">
-              {slug === "all" ? "Tüm Snus Çeşitleri" : `${slug} Snus Çeşitleri`}
+              {slug === "" ? "Tüm Snus Çeşitleri" : `${slug.charAt(0).toUpperCase() + slug.slice(1)} Snus Çeşitleri`}
             </h1>
 
             {filteredProducts.length === 0 ? (

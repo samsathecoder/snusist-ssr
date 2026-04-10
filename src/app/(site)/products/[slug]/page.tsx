@@ -37,7 +37,7 @@ export async function generateMetadata(
   const siteName = 'snusist';
   const baseUrl = 'https://snusist.com';
   const canonical = `${baseUrl}/products/${product.slug}`;
-  const image = product.coverImage || `${baseUrl}/images/snusist-logo.webp`;
+  const image = product.coverImage || `${baseUrl}/images/${encodeURIComponent(product.title)}-image.webp`;
 
   return {
     title: product.seoTitle || `${product.title} - Snus Istanbul`,

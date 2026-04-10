@@ -31,10 +31,14 @@ export async function getAllProductSlugs(): Promise<string[]> {
   return products.map((product) => product.slug);
 }
 
-// Kategori ile ürün bul
+// Kategori ile ürün bul (case-insensitive)
 export async function getProductsByCategory(category: string): Promise<Product[]> {
   const products = await getProducts();
-  return products.filter((product) => product.category === category);
+  if (category === "") {
+    return products; // Boş kategori = tüm ürünler
+  }
+  const lowerCategory = category.toLowerCase();
+  return products.filter((product) => product.category.toLowerCase() === lowerCategory);
 }
 
 // Arama yapısı
