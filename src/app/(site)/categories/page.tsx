@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "Snus İstanbul",
     images: [
       {
-        url: "https://snusist.com/images/snusist-logo-cat.webp",
+        url: "https://snusist.com/images/snusist-logo.cat.webp",
         width: 1200,
         height: 630,
         alt: "Snus İstanbul - Tüm Snus Markaları",
