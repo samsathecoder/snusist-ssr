@@ -38,7 +38,7 @@ export default function StructuredData({
     mainEntity: filteredProducts.map((product) => ({
       "@type": "Product",
       name: product.title,
-      image: [`${product.coverImage}`],
+      image: [`https://snusist.com/images/${product.title}-image.webp`],
       description:
         typeof product.description === "string"
           ? product.description.replace(/<[^>]+>/g, "")
