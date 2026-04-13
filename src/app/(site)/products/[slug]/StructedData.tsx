@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function ProductStructuredData({ product }: Props) {
-  const imageUrl = product.coverImage || 'https://snusist.com/images/snusist-logo.webp';
+  const imageUrl = `https://snusist.com/images/${product.title}-image.webp`;
   const description = product.description ? product.description.replace(/<[^>]+>/g, '') : '';
   const productUrl = `https://snusist.com/products/${product.slug}`;
 
