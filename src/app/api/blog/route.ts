@@ -1,4 +1,22 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
+
+export async function GET(req: NextRequest) {
+  try {
+    const blogsPath = path.join(process.cwd(), "public/data/blog.json");
+    const blogData = fs.readFileSync(blogsPath, "utf-8");
+    const blogs = JSON.parse(blogData);
+    
+    return NextResponse.json(blogs);
+  } catch (err) {
+    console.error("Blog yükleme hatası:", err);
+    return NextResponse.json(
+      { error: "Blog yazıları yüklenemedi" },
+      { status: 500 }
+    );
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {

@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import fs from 'fs';
+import path from 'path';
 
 export const metadata = {
   title: "Snus Blog | Snusist İstanbul",
@@ -35,60 +37,69 @@ export const metadata = {
 
 
 export default async function BlogPage() {
-  // Blog data will be added in the future
-  const blogs = [];
+  // Blog verilerini doğrudan dosyadan oku
+  let blogs = [];
+  try {
+    const blogPath = path.join(process.cwd(), 'public/data/blog.json');
+    const blogData = fs.readFileSync(blogPath, 'utf-8');
+    blogs = JSON.parse(blogData);
+  } catch (error) {
+    console.error("Blog yükleme hatası:", error);
+  }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-32">
-      <h1 className="text-4xl font-bold text-center mb-16">📝 Son Blog Yazıları</h1>
+    <div className="max-w-7xl mx-auto px-4 py-10">
+      <h1 className="text-4xl font-bold text-center mb-16">📝 Snus Blog - Bilgi ve İpuçları</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {blogs.map((post) => (
-          <article key={post._id} className="bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-lg">
-            {/* Cover Image */}
-            <img
-              src={post.coverImage || "https://snusist.com/images/snusist-logo.webp"}
-              alt={post.title}
-              className="w-full h-48 object-contain"
-            />
+      {blogs.length === 0 ? (
+        <div className="text-center py-16">
+          <p className="text-gray-600 text-lg">Henüz blog yazısı bulunmamaktadır.</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogs.map((post) => (
+            <article key={post._id} className="bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-lg">
+              {/* Cover Image */}
+              <img
+                src={post.coverImage || "https://snusist.com/images/snusist-logo.webp"}
+                alt={post.title}
+                className="w-full h-48 object-cover"
+              />
 
-            <div className="p-6">
-              {/* Tarih */}
-              <time className="text-sm text-gray-500">
-                {post.createdAtTR || new Date(post.createdAt).toLocaleDateString("tr-TR")}
-              </time>
-
-              {/* Başlık */}
-              <h2 className="text-xl font-bold mt-2 mb-3">{post.title}</h2>
-
-              {/* Özet */}
-              <p className="text-gray-600 mb-4">{ post.seoDescription.substring(0, 300) + "..."}</p>
-
-              {/* Etiketler */}
-              {post.tags?.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {post.tags.map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+              <div className="p-6">
+                {/* Kategori ve Okuma Süresi */}
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm font-semibold text-indigo-600">{post.category}</span>
+                  <span className="text-sm text-gray-500">{post.readTime} dk okuma</span>
                 </div>
-              )}
 
-              {/* Devamını oku */}
-              <Link
-                href={`/blog/${post.slug}`}
-                className="text-blue-600 font-semibold hover:underline"
-              >
-                Yazıyı Oku →
-              </Link>
-            </div>
-          </article>
-        ))}
-      </div>
+                {/* Tarih */}
+                <time className="text-sm text-gray-500">
+                  {new Date(post.createdAt).toLocaleDateString("tr-TR", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                  })}
+                </time>
+
+                {/* Başlık */}
+                <h2 className="text-xl font-bold mt-2 mb-3 line-clamp-2">{post.title}</h2>
+
+                {/* Özet */}
+                <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
+
+                {/* Devamını oku */}
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition"
+                >
+                  Yazıyı Oku →
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
