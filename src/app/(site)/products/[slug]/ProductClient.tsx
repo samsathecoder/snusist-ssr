@@ -11,7 +11,7 @@ interface ProductClientProps {
     title: string;
     price: number;
     description: string;
-    seoDescription: string;
+    seoDescription?: string;
     category: string;
     slug: string;
     coverImage?: string;
@@ -22,6 +22,8 @@ interface ProductClientProps {
     category: string;
     slug: string;
     coverImage?: string;
+        description: string;
+    seoDescription?: string;
   }[];
 }
 
