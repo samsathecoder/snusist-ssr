@@ -11,6 +11,7 @@ interface ProductClientProps {
     title: string;
     price: number;
     description: string;
+    seoDescription: string;
     category: string;
     slug: string;
     coverImage?: string;
@@ -56,38 +57,39 @@ export default function ProductClient({ product, allProducts }: ProductClientPro
   return (
     <>
 
-      <div className="max-w-5xl mx-auto px-4 py-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Image
-            src={productImage}
-            alt={product.title}
-            width={600}
-            height={600}
-            className="rounded-lg shadow"
-            priority
-            unoptimized
-          />
+<div className="max-w-6xl mx-auto px-4  "> 
+   <div className="bg-white rounded-3xl shadow-xl p-6 md:p-10">
+<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">         <Image
+    src={productImage}
+    alt={product.title}
+    width={600}
+    height={600}
+    className="rounded-2xl shadow-lg hover:scale-105 transition duration-300 cursor-pointer"
+    priority
+    unoptimized
+  />
 
-          <div className="flex flex-col justify-center">
-            <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
-            <p className="text-xl text-gray-700 mb-2">{product.price}₺</p>
-
-            <div className="flex justify-center mt-4">
-              <Link
-                href={`https://wa.me/905464205366?text=Merhaba, ${product.title} ürününü sipariş vermek istiyorum.`}
-                target="_blank"
-                className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-base px-4 py-2 rounded-md transition shadow-md"
-              >
-                <FaWhatsapp size={24} />
-                <span>Sipariş ver</span>
-              </Link>
+<div className="flex flex-col justify-center bg-gray-50 p-6 rounded-2xl shadow-sm">            <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
+          <p className="text-gray-500 text-sm mt-2 mb-4">
+  {product.seoDescription}
+</p>
+          
+<p className="text-2xl font-bold text-blue-600 mb-2">
+  {product.price}₺
+</p>
+<div className="mt-6">              <Link
+  href={`https://wa.me/905464205366?text=Merhaba, ${product.title} sipariş vermek istiyorum.`}
+  target="_blank"
+className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white text-base px-6 py-4 rounded-2xl transition shadow-lg hover:shadow-2xl active:scale-95">
+  <FaWhatsapp size={22} />
+  <span className="font-semibold">WhatsApp ile Sipariş Ver</span>
+</Link>
             </div>
           </div>
         </div>
 
         {/* Tablar */}
-        <div className="mt-12">
-          <div className="flex gap-4 border-b border-gray-300">
+<div className="mt-12 bg-white rounded-2xl shadow-md p-6">          <div className="flex gap-4 border-b border-gray-300">
             {tabs.map((tab) => (
               <button
                 key={tab.key}
@@ -111,13 +113,16 @@ export default function ProductClient({ product, allProducts }: ProductClientPro
             )}
           </div>
         </div>
-
+<div className="mt-12">
+  <h2 className="text-xl font-bold mb-4">Benzer Ürünler</h2>
         {/* Benzer ürünler */}
         <CategoryProductsCarousel
           allProducts={allProducts}
           currentCategory={product.category}
           currentSlug={product.slug}
         />
+              </div>
+</div>
       </div>
     </>
   );
