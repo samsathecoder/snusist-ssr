@@ -1,12 +1,15 @@
 ﻿'use client';
 import { useState, useEffect } from   'react';  
 import Link from 'next/link';
-import { Menu, Search, X, ShoppingBag } from  'lucide-react';
+import { Menu, Search, X, ShoppingBag, ChevronDown } from  'lucide-react';
 import { Product } from "@/types";
 type Props = { products: Product[] };
 
+const CATEGORIES = ["Velo", "Pablo", "Cuba", "Garant", "Siberia", "Killa", "Odens","Fox","D.L.T.A"];
+
 export default function Navbar({ products = [] }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
@@ -38,11 +41,11 @@ export default function Navbar({ products = [] }: Props) {
         <div className="max-w-7xl mx-auto  px-4 sm:px-6 lg:px-8">
           <div className="h-16 flex items-center">
             {/* Logo and Menu - Left Side */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               {/* Logo */}
               <Link href="/" className="flex items-center space-x-2 flex-shrink-0 hover:opacity-80 transition">
-                <img src="/images/snusist-logo.webp" alt="Snusist Logo" className="w-12 h-12 rounded-lg" />
-                <span className="text-lg sm:text-xl font-bold text-white hidden sm:inline">snusist</span>
+                <img src="/images/snusist-logo.webp" alt="Snusist Logo" className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg" />
+                <span className="text-sm sm:text-lg md:text-xl font-bold text-white hidden sm:inline">snusist</span>
               </Link>
 
               {/* Desktop Menu */}
@@ -50,13 +53,37 @@ export default function Navbar({ products = [] }: Props) {
                 <Link href="/" className="px-3 py-2 text-white hover:bg-white/10 rounded-md transition">
                   Ana Sayfa
                 </Link>
-                <Link href="/categories/" className="px-3 py-2 text-white hover:bg-white/10 rounded-md transition">
-                  Ürünler
-                </Link>
+                
+                {/* Dropdown Menu */}
+                <div className="relative group">
+                  <button className="px-3 py-2 text-white hover:bg-white/10 rounded-md transition flex items-center gap-1">
+                    Ürünler <ChevronDown size={18} className="group-hover:rotate-180 transition" />
+                  </button>
+                  <div className="absolute left-0 mt-0 w-48 bg-slate-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    {CATEGORIES.map((cat) => {
+                      const slug = cat.toLowerCase().replace(/\s+/g, '-');
+                      return (
+                        <Link
+                          key={cat}
+                          href={`/categories/${slug}`}
+                          className="block px-4 py-3 text-white hover:bg-blue-600 first:rounded-t-lg last:rounded-b-lg transition"
+                        >
+                          {cat}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+
                 <Link href="/blog" className="px-3 py-2 text-white hover:bg-white/10 rounded-md transition">
                   Blog
                 </Link>
               </div>
+            </div>
+
+            {/* Center Brand */}
+            <div className="flex-1 flex justify-center">
+              <span className="text-lg sm:text-xl md:text-2xl font-bold font-cursive text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">snusist</span>
             </div>
 
             {/* Spacer */}
@@ -180,13 +207,32 @@ export default function Navbar({ products = [] }: Props) {
               >
                 🏠 Ana Sayfa
               </Link>
-              <Link
-                onClick={handleLinkClick}
-                href="/categories/"
-                className="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition font-medium"
+              
+              {/* Mobile Dropdown */}
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="w-full text-left block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition font-medium flex items-center justify-between"
               >
-                🛍️ Ürünler
-              </Link>
+                🛍️ Ürünler <ChevronDown size={18} className={`transition ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {isDropdownOpen && (
+                <div className="pl-4 space-y-1 bg-white/5 rounded-lg">
+                  {CATEGORIES.map((cat) => {
+                    const slug = cat.toLowerCase().replace(/\s+/g, '-');
+                    return (
+                      <Link
+                        key={cat}
+                        onClick={handleLinkClick}
+                        href={`/categories/${slug}`}
+                        className="block px-4 py-2 text-white hover:bg-blue-600 rounded transition text-sm"
+                      >
+                        • {cat}
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+              
               <Link
                 onClick={handleLinkClick}
                 href="/blog"

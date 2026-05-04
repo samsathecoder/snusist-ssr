@@ -11,19 +11,21 @@ type Props = {
   products: Product[];
 };
 
+const CATEGORIES = ["Velo", "Pablo", "Cuba", "Garant", "Siberia", "Killa","Odens","Fox","D.L.T.A"];
+
 export default function CategoryClient({ products }: Props) {
   // Slug'ı client-side useParams hook'u ile alıyoruz
   const params = useParams();
   const slug = (params?.slug as string) || "";
 
   // Ürünleri kategoriye göre filtrele
-  const filteredProducts = slug === ""
+  const filteredProducts = slug === "" || slug === "hepsi"
     ? products
-    : products.filter((p) => p.category.toLowerCase() === slug.toLowerCase());
+    : products.filter((p) => p.category.toLowerCase() === slug.replace(/-/g, ' ').toLowerCase());
 
-  const categories = Array.from(new Set(products.map((p) => p.category)));
+  const categories = CATEGORIES;
 
-  const siteName = "Snus İstanbul";
+  const siteName = "Snusist";
   const pageTitle = slug === "" ? `Tüm Snus Markaları - ${siteName}` : `${slug} Snus - ${siteName}`;
   const pageDescription = slug === "all"
     ? `Tüm snus çeşitleri – ${siteName}. | Aynı gün teslimat ve en uygun fiyat garantisi snusist.com'da.`
@@ -39,26 +41,27 @@ export default function CategoryClient({ products }: Props) {
         <div className="flex flex-col md:flex-row ">
           {/* Sidebar */}
           <aside className="md:w-64 w-full">
-            <h2 className="text-xl font-semibold mt-12 mb-4">Kategoriler</h2>
-            <div className="flex md:flex-col flex-row gap-2 overflow-x-auto md:overflow-visible no-scrollbar">
+            <h2 className="text-xl font-semibold mb-4">Kategoriler</h2>
+            <div className="flex md:flex-col flex-row gap-2 mb-4 overflow-x-auto md:overflow-visible no-scrollbar">
               <Link
                 href="/categories/"
                 className={cn(
                   "px-4 py-2 rounded-lg transition text-sm md:text-base whitespace-nowrap",
-                  slug === "all" ? "text-zinc-900 font-bold" : "text-zinc-500 hover:bg-zinc-100"
+                  slug === "" || slug === "hepsi" ? "text-zinc-900 font-bold bg-blue-100" : "text-zinc-500 hover:bg-zinc-100"
                 )}
               >
                 Hepsi
               </Link>
               {categories.map((cat) => {
                 const lowerCat = cat.toLowerCase();
+                const slugCat = lowerCat.replace(/\s+/g, '-');
                 return (
                   <Link
                     key={lowerCat}
-                    href={`/categories/${lowerCat}`}
+                    href={`/categories/${slugCat}`}
                     className={cn(
                       "px-4 py-2 rounded-lg transition text-sm md:text-base whitespace-nowrap",
-                      slug === lowerCat ? "text-zinc-900 font-bold" : "text-zinc-500 hover:bg-zinc-100"
+                      slug === slugCat ? "text-zinc-900 font-bold bg-blue-100" : "text-zinc-500 hover:bg-zinc-100"
                     )}
                   >
                     {cat}
@@ -69,13 +72,21 @@ export default function CategoryClient({ products }: Props) {
           </aside>
 
           {/* Ürünler */}
-          <section className="flex-1 md:py-12 mx-auto">
-            <h1 className="text-3xl font-bold md:mb-12 mt-6 text-center text-zinc-800">
-              {slug === "" ? "Tüm Snus Çeşitleri" : `${slug.charAt(0).toUpperCase() + slug.slice(1)} Snus Çeşitleri`}
-            </h1>
+          <section className="flex-1 md:pl-8">
+            <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 text-white rounded-lg p-4 sm:p-6 md:p-8 mb-6 sm:mb-8 shadow-lg">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">
+                {slug === "" || slug === "hepsi" ? "🌟 Snus Markalarını Keşfedin" : ` ${slug.charAt(0).toUpperCase() + slug.slice(1)} Snus`}
+              </h1>
+              <p className="text-blue-100 text-sm sm:text-base md:text-lg mb-3 sm:mb-4 font-semibold">
+                {filteredProducts.length} ürün | Aynı gün teslimat | ⭐ Premium kalite
+              </p>
+              <p className="text-blue-50 text-xs sm:text-sm md:text-base leading-relaxed">
+                🏆 Snus İstanbul - Türkiye'nin snus adresi! Orijinal markalar, moto kuryeyle aynı gün teslimat.
+              </p>
+            </div>
 
             {filteredProducts.length === 0 ? (
-              <p className="text-center text-gray-500">Bu kategoriye ait ürün bulunamadı.</p>
+              <p className="text-center text-gray-500 text-lg">Bu kategoriye ait ürün bulunamadı.</p>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProducts.map((product) => (

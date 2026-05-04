@@ -13,7 +13,7 @@ export default function PromoBanner({ allProducts }: PromoBannerProps) {
 
   const handleOrderClick = () => {
     if (selectedProduct) {
-      const message = `Merhaba, ${selectedProduct} ürünü hakkında sipariş vermek istiyorum.`;
+      const message = `Merhaba, ${selectedProduct} sipariş vermek istiyorum.`;
       const url = `https://wa.me/905464205366?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     }

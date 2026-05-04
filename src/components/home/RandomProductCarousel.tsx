@@ -23,7 +23,13 @@ export default function RandomProductCarousel({ products }: Props) {
 
   return (
     <div className="max-w-6xl mx-auto px-2 py-10">
-      <h2 className="text-2xl font-bold text-center mb-6">Öne Çıkan Ürünler</h2>
+      {/* Başlık ve Reklam Banner Kapsayıcı */}
+      <div className="text-center mb-6">
+        <h2 className="text-2xl font-bold mb-4">Öne Çıkan Ürünler</h2>
+        <div className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-lg shadow-lg inline-block">
+          <p className="text-base font-semibold">🚀 Sipariş için hemen ürününüzü seçip WhatsApp'dan bize atın! 📱✨</p>
+        </div>
+      </div>
 
       {/* Kaydırılabilir Grid */}
       <div className="overflow-x-auto">

@@ -5,6 +5,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
 import CategoryProductsCarousel from '@/components/RelatedProducts';
+import { ChevronRight } from 'lucide-react';
 
 interface ProductClientProps {
   product: {
@@ -58,8 +59,24 @@ export default function ProductClient({ product, allProducts }: ProductClientPro
 
   return (
     <>
+      {/* Breadcrumb */}
+      <div className="bg-gray-100 py-3 sticky top-16 z-40 shadow-sm">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex items-center gap-1 text-xs sm:text-sm overflow-x-auto no-scrollbar">
+            <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium whitespace-nowrap">
+              Ana Sayfa
+            </Link>
+            <ChevronRight size={16} className="text-gray-400 flex-shrink-0" />
+            <Link href={`/categories/${product.category.toLowerCase()}`} className="text-blue-600 hover:text-blue-800 font-medium whitespace-nowrap">
+              {product.category}
+            </Link>
+            <ChevronRight size={16} className="text-gray-400 flex-shrink-0" />
+            <span className="text-gray-700 font-medium truncate">{product.title}</span>
+          </div>
+        </div>
+      </div>
 
-<div className="max-w-6xl mx-auto px-4  "> 
+<div className="max-w-6xl mx-auto px-4 py-8"> 
    <div className="bg-white rounded-3xl shadow-xl p-6 md:p-10">
 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">         <Image
     src={productImage}
