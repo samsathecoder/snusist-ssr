@@ -17,11 +17,11 @@ export default function CategoryShowcase() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
   {categories.map((category) => (
-    <Link
-      key={category}
-      href={`/categories/${category.toLowerCase()}`}
-      className="group relative h-48 sm:h-56 md:h-64 overflow-hidden rounded-lg sm:rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
-    >
+  <Link
+  key={category}
+  href={`/categories/${category.toLowerCase()}`}
+  className="group relative aspect-[4/5] overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all"
+>
 <picture>
   <source 
     srcSet={`/images/${category}-category-image.webp`} 
@@ -32,7 +32,7 @@ export default function CategoryShowcase() {
     loading="lazy"
     src={`/images/${category}-category-image.webp`} 
     alt={category}
-    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-200"
+    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
   />
 </picture>
 <div className="absolute inset-0 group-hover:bg-black/40 transition-colors duration-200"></div>

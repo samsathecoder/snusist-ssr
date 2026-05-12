@@ -45,7 +45,7 @@ export default function Navbar({ products = [] }: Props) {
               {/* Logo */}
               <Link href="/" className="flex items-center space-x-2 flex-shrink-0 hover:opacity-80 transition">
                 <img src="/images/snusist-logo.webp" alt="Snusist Logo" className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg" />
-                <span className="text-sm sm:text-lg md:text-xl font-bold text-white hidden sm:inline">snusist</span>
+                <span className="text-sm sm:text-lg md:text-xl font-bold text-white  sm:inline">snusist</span>
               </Link>
 
               {/* Desktop Menu */}
@@ -81,10 +81,7 @@ export default function Navbar({ products = [] }: Props) {
               </div>
             </div>
 
-            {/* Center Brand */}
-            <div className="flex-1 flex justify-center">
-              <span className="text-lg sm:text-xl md:text-2xl font-bold font-cursive text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">snusist</span>
-            </div>
+           
 
             {/* Spacer */}
             <div className="flex-1"></div>
