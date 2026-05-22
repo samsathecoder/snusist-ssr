@@ -1,0 +1,64 @@
+{
+  "redirects": [
+    {
+      "source": "/products/Siberia-White-Dry-Slim",
+      "destination": "/products/siberia-80-white-dry-slim",
+      "permanent": true
+    },
+    {
+      "source": "/products/Garant-Extreme-Mango-Lime",
+      "destination": "/products/garant-extreme-mango-lime",
+      "permanent": true
+    },
+    {
+      "source": "/products/Velo-Bright-Spearmint",
+      "destination": "/products/velo-bright-spearmint",
+      "permanent": true
+    },
+    {
+      "source": "/products/Velo-Peppermint-Storm",
+      "destination": "/products/velo-peppermint-storm",
+      "permanent": true
+    },
+    {
+      "source": "/products/Velo-Freezing-Peppermint",
+      "destination": "/products/velo-freezing-peppermint",
+      "permanent": true
+    },
+    {
+      "source": "/products/Velo-Crispy-Peppermint",
+      "destination": "/products/velo-crispy-peppermint",
+      "permanent": true
+    },
+    {
+      "source": "/products/Velo-Watermelon-Ice",
+      "destination": "/products/velo-watermelon-ice",
+      "permanent": true
+    },
+    {
+      "source": "/products/Siberia-White-Dry",
+      "destination": "/products/siberia-80-white-dry",
+      "permanent": true
+    },
+    {
+      "source": "/products/Velo-Icy-Berries",
+      "destination": "/products/velo-icy-berries",
+      "permanent": true
+    },
+    {
+      "source": "/products/Velo-Mighty-Peppermint",
+      "destination": "/products/velo-freezing-peppermint",
+      "permanent": true
+    },
+    {
+      "source": "/products/Velo-Ruby-Berry",
+      "destination": "/products/velo-ruby-berry",
+      "permanent": true
+    },
+    {
+      "source": "/products/Cuba-Peach",
+      "destination": "/products/cuba-peach",
+      "permanent": true
+    }
+  ]
+}
