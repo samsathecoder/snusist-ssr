@@ -56,8 +56,49 @@
       "permanent": true
     },
     {
-      "source": "/products/Cuba-Peach",
+      "source": "/products/garant-extreme-freeze",
+      "destination": "/products/garant-freeze-extreme",
+      "permanent": true
+    }
+    ,
+    {
+      "source": "/products/cuba-peach-strong",
       "destination": "/products/cuba-peach",
+      "permanent": true
+    },
+    {
+      "source": "/products/Pablo-Exclusive-Blue-Rasperry",
+      "destination": "/products/pablo-exclusive-blue-raspberry",
+      "permanent": true
+    },
+
+    {
+      "source": "/products/Killa-Blueberry",
+      "destination": "/products/killa-blueberry-extra-strong",
+      "permanent": true
+    },
+
+    {
+      "source": "/products/pablo-ice-cold-danger-strong",
+      "destination": "/products/pablo-ice-cold",
+      "permanent": true
+    },
+
+    {
+      "source": "/products/cuba-blueberry-strong",
+      "destination": "/products/cuba-blueberry",
+      "permanent": true
+    },
+
+    {
+      "source": "/blog/1-snus-kac-sigaradir",
+      "destination": "/blog",
+      "permanent": true
+    },
+
+    {
+      "source": "/products/velo-mighty-peppermint-max",
+      "destination": "/products/velo-freezing-peppermint-max",
       "permanent": true
     }
   ]
