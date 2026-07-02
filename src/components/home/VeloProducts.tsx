@@ -21,7 +21,7 @@ export default function VeloProducts({ products }: Props) {
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3">🚀 Velo Snus - Hemen Sipariş Verin!</h2>
         <p className="text-sm sm:text-base md:text-lg font-semibold mb-3 sm:mb-4">✅ Aynı Gün Kargo | 💳 Kapıda Ödeme | 🏍️ Moto kurye Kargo</p>
         <p className="text-blue-100 text-xs sm:text-sm md:text-base leading-relaxed">
-          Velo Snus İstanbul. Hızlı kargo, aynı gün teslimat. Premium kalite, uygun fiyat!
+          Velo Snus. Hızlı snus kar go, aynı gün teslimat. Premium kalite, uygun fiyat!
         </p>
       </div>
 
