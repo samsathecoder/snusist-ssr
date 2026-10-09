@@ -77,6 +77,27 @@ export default async function Page({ params, searchParams }: Props) {
   const allProducts = await getProducts();
   const otherProducts = allProducts.filter((p) => p.slug !== slug);
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: "https://snusist.com/" },
+      { "@type": "ListItem", position: 2, name: "Kategoriler", item: "https://snusist.com/categories" },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: product.category,
+        item: `https://snusist.com/categories/${product.category.toLowerCase()}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: product.title,
+        item: `https://snusist.com/products/${product.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <ProductClient
@@ -84,6 +105,10 @@ export default async function Page({ params, searchParams }: Props) {
         allProducts={otherProducts}
       />
       <ProductStructuredData product={product} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
     </>
   );
 }

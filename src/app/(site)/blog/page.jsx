@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import fs from 'fs';
 import path from 'path';
 
@@ -60,9 +61,12 @@ export default async function BlogPage() {
           {blogs.map((post) => (
             <article key={post._id} className="bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-lg">
               {/* Cover Image */}
-              <img
+              <Image
                 src={post.coverImage || "https://snusist.com/images/snusist-logo.webp"}
                 alt={post.title}
+                width={400}
+                height={192}
+                loading="lazy"
                 className="w-full h-48 object-cover"
               />
 

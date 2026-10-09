@@ -21,7 +21,7 @@ export default function VeloProducts({ products }: Props) {
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3">🚀 Velo Snus - Hemen Sipariş Verin!</h2>
         <p className="text-sm sm:text-base md:text-lg font-semibold mb-3 sm:mb-4">✅ Aynı Gün Kargo | 💳 Kapıda Ödeme | 🏍️ Moto kurye Kargo</p>
         <p className="text-blue-100 text-xs sm:text-sm md:text-base leading-relaxed">
-          Velo Snus. Hızlı snus kar go, aynı gün teslimat. Premium kalite, uygun fiyat!
+          Velo Snus. Hızlı snus kargo, aynı gün teslimat. Premium kalite, uygun fiyat!
         </p>
       </div>
 
@@ -43,7 +43,7 @@ export default function VeloProducts({ products }: Props) {
             />
             <div className="p-4 flex flex-col flex-grow justify-between">
               <div>
-                <h2 className="text-base font-bold text-zinc-800">{product.title}</h2>
+                <h3 className="text-base font-bold text-zinc-800">{product.title}</h3>
                 <p className="text-sm text-zinc-500">{product.price}₺</p>
               </div>
               <span className="mt-3 inline-block text-center text-sm font-medium py-2 px-4 rounded-lg border border-zinc-300 text-zinc-700 bg-zinc-50 hover:bg-zinc-100 transition">

@@ -70,10 +70,29 @@ export default async function CategoryPage({ params }: Props) {
   // Slug'ı normalize et (URL lowercase, ama kategori normal case olabilir)
   const allProducts = await getProductsByCategory(slug);
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: "https://snusist.com/" },
+      { "@type": "ListItem", position: 2, name: "Kategoriler", item: "https://snusist.com/categories" },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: slug.charAt(0).toUpperCase() + slug.slice(1),
+        item: `https://snusist.com/categories/${slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <CategoryClient products={allProducts} />
-      <StructuredData products={allProducts} />
+      <StructuredData category={slug} products={allProducts} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
     </>
   );
 }

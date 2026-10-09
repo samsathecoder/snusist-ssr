@@ -85,7 +85,6 @@ export default function ProductClient({ product, allProducts }: ProductClientPro
     height={600}
     className="rounded-2xl shadow-lg hover:scale-105 transition duration-300 cursor-pointer"
     priority
-    unoptimized
   />
 
 <div className="flex flex-col justify-center bg-gray-50 p-6 rounded-2xl shadow-sm">            <h1 className="text-3xl font-bold mb-4">{product.title}</h1>

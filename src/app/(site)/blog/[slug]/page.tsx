@@ -1,8 +1,10 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import fs from 'fs';
 import path from 'path';
 import type { Metadata } from 'next';
+import { BlogStructuredData } from '@/StructedData/BlogStructedData';
 
 // Blog verilerini oku
 function getBlogPost(slug: string) {
@@ -89,17 +91,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <article className="max-w-3xl mx-auto px-4 py-12">
+      <BlogStructuredData blog={post} />
+
       {/* Geri Dön Linki */}
       <Link href="/blog" className="text-indigo-600 hover:text-indigo-700 font-semibold mb-6 inline-block">
         ← Tüm Yazılara Dön
       </Link>
 
       {/* Cover Image */}
-      <div className="w-full h-96 rounded-xl overflow-hidden mb-8">
-        <img
+      <div className="w-full h-96 rounded-xl overflow-hidden mb-8 relative">
+        <Image
           src={post.coverImage || 'https://snusist.com/images/snusist-logo.webp'}
           alt={post.title}
-          className="w-full h-full object-cover"
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="object-cover"
         />
       </div>
 

@@ -1,10 +1,7 @@
 # *
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /product-page/
-Disallow: /category/
-Disallow: /en/
+
 # Host
 Host: https://snusist.com
 

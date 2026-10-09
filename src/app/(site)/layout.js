@@ -21,17 +21,17 @@ const robotoMono = Roboto_Mono({
 
 
 export const metadata = {
-    title: "Snus | Snus İstanbul | Snus Turkey | Snus Satın Al",
+    title: "Snus Satın Al | Snusist – Türkiye'nin Snus Mağazası",
   description: "İstanbul’da orijinal ve kaliteli snus ürünlerini en uygun fiyatlarla sizlere sunuyoruz. Hemen sipariş verin, kapınıza getirelim!",
   keywords: [
-    "snus", 
-    "snus satın al", 
-    "snus istanbul", 
-    "snus Türkiye", 
+    "snus",
+    "snus satın al",
+    "snus istanbul",
+    "snus Türkiye",
     "snusist"
   ],
   openGraph: {
-    title: "Snus | Snus İstanbul | Snus Turkey | Snus Satın Al",
+    title: "Snus Satın Al | Snusist – Türkiye'nin Snus Mağazası",
     description: "İstanbul'da en kaliteli snus ürünlerini Snusist'te bulabilirsiniz. Orijinal ürün garantisi, uygun fiyatlar ve hızlı teslimat!",
     url: "https://snusist.com",
     siteName: "Snusist",
@@ -73,6 +73,11 @@ export const metadata = {
   alternates: {
     canonical: "https://snusist.com/",
   },
+  // Google Search Console'da "URL öneki" ile mülk doğrulandığında oradan alınan
+  // "content" değerini buraya yapıştır (meta tag seçeneği): verification: { google: "XXXXXXXX" }
+  verification: {
+    // google: "GOOGLE_SEARCH_CONSOLE_DOGRULAMA_KODU",
+  },
 };
 
 export default async function RootLayout({ children }) {
@@ -112,26 +117,30 @@ export default async function RootLayout({ children }) {
       <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
         <Navbar products={allProducts || []} />
 
-        {/* JSON-LD structured data */}
-        <Script id="ld-json" type="application/ld+json" strategy="afterInteractive">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Store",
-            name: "Snusist",
-            image: "https://snusist.com/images/snusist-logo.webp",
-            "@id": "https://snusist.com",
-            url: "https://snusist.com",
-            telephone: "+90 546 420 53 66",
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "İstanbul",
-              addressCountry: "TR",
-            },
-            sameAs: [
-              "https://www.instagram.com/snuss.istanbul"
-            ],
-          })}
-        </Script>
+        {/* JSON-LD structured data: sunucu tarafında render edilir, Googlebot ilk HTML'de görür */}
+        <script
+          id="ld-json"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Store",
+              name: "Snusist",
+              image: "https://snusist.com/images/snusist-logo.webp",
+              "@id": "https://snusist.com",
+              url: "https://snusist.com",
+              telephone: "+90 546 420 53 66",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "İstanbul",
+                addressCountry: "TR",
+              },
+              sameAs: [
+                "https://www.instagram.com/snuss.istanbul",
+              ],
+            }),
+          }}
+        />
 
         {/* Main content */}
         {children}

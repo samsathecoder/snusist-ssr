@@ -18,10 +18,10 @@ export default function HeroSection() {
           
           <div className="w-full md:w-1/2 text-white">
             <h1 className="text-2xl md:text-4xl font-bold mb-3 drop-shadow-lg">
-              Snus | Velo Snus | Snus Market | Snus İstanbul
+              Türkiye'nin Snus Mağazası: Snusist
             </h1>
             <p className="text-base md:text-xl opacity-90 drop-shadow-md">
-              Türkiye'nin snus mağazası 🌟 Premium kalite, 🏍️ hızlı teslimat!
+              Velo, Pablo, Cuba ve daha fazlası 🌟 Premium kalite, 🏍️ aynı gün teslimat!
             </p>
           </div>
           <div className="hidden md:block w-full md:w-1/3 mt-8 md:mt-0">

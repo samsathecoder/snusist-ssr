@@ -13,6 +13,18 @@ type Props = {
 
 const CATEGORIES = ["Velo", "Pablo", "Cuba", "Garant", "Siberia", "Killa","Odens","Fox","D.L.T.A"];
 
+const CATEGORY_INTROS: Record<string, string> = {
+  velo: "Velo snus, hafif ve dengeli nikotin seviyeleri (6-14mg) ile tütünsüz beyaz porsiyon segmentinin en popüler markasıdır. Peppermint, meyve ve mentol aromalarıyla geniş bir seçenek sunar.",
+  pablo: "Pablo snus, yüksek nikotin yoğunluğu (20-43mg) arayan deneyimli kullanıcılar için üretilen güçlü bir İsveç markasıdır. Keskin aroma profilleri ve yoğun etkisiyle tanınır.",
+  cuba: "Cuba snus, egzotik meyve aromaları ve yüksek nikotin oranlarıyla bilinen bir markadır. Watermelon, Cherry, Grape gibi çeşitleriyle tat çeşitliliği arayanlara hitap eder.",
+  garant: "Garant snus, uzun süreli nikotin salımı ve dengeli aroma yapısıyla bilinen, klasik tütün deneyimini modern porsiyon formatında sunan bir markadır.",
+  siberia: "Siberia snus, piyasadaki en yüksek nikotin konsantrasyonuna (43mg/g, -80 serisi) sahip, deneyimli ve güçlü etki arayan kullanıcılar için tasarlanmış ekstrem bir markadır.",
+  killa: "Killa snus, yoğun meyve aromaları ve ekstra güçlü nikotin seviyeleriyle (20mg) öne çıkan, keskin tat deneyimi sunan bir markadır.",
+  odens: "Odens snus, İsveç'in geleneksel ve köklü markalarından biridir; sade, klasik tütün aroması ve kuru porsiyon yapısıyla tanınır.",
+  fox: "White Fox snus, tütünsüz beyaz porsiyon formatında yüksek nikotin (16-20mg) ve nane ağırlıklı aromalarıyla bilinen, kompakt kullanım sunan bir markadır.",
+  "d.l.t.a": "D.L.T.A snus, enerji içeceği ve meyve esintili özgün aroma kombinasyonlarıyla farklı bir tat deneyimi sunan niş bir markadır.",
+};
+
 export default function CategoryClient({ products }: Props) {
   // Slug'ı client-side useParams hook'u ile alıyoruz
   const params = useParams();
@@ -24,6 +36,11 @@ export default function CategoryClient({ products }: Props) {
     : products.filter((p) => p.category.toLowerCase() === slug.replace(/-/g, ' ').toLowerCase());
 
   const categories = CATEGORIES;
+
+  const isAllCategories = slug === "" || slug === "hepsi";
+  const categoryIntro = isAllCategories
+    ? "Snusist'te Velo, Pablo, Cuba, Garant, Siberia, Killa, Odens, White Fox ve D.L.T.A gibi orijinal snus markalarını tek adreste bulabilirsiniz. Her markanın nikotin seviyesi ve aroma profili farklıdır; aşağıdaki kategorilerden size uygun markayı inceleyebilirsiniz."
+    : CATEGORY_INTROS[slug.toLowerCase()];
 
   const siteName = "Snusist";
   const pageTitle = slug === "" ? `Tüm Snus Markaları - ${siteName}` : `${slug} Snus - ${siteName}`;
@@ -84,6 +101,12 @@ export default function CategoryClient({ products }: Props) {
                 🏆 Snus İstanbul - Türkiye'nin snus adresi! Orijinal markalar, moto kuryeyle aynı gün teslimat.
               </p>
             </div>
+
+            {categoryIntro && (
+              <p className="text-zinc-600 text-sm md:text-base leading-relaxed mb-6 max-w-3xl">
+                {categoryIntro}
+              </p>
+            )}
 
             {filteredProducts.length === 0 ? (
               <p className="text-center text-gray-500 text-lg">Bu kategoriye ait ürün bulunamadı.</p>
