@@ -4,6 +4,7 @@ import CategoryClient from "../CategoryClient";
 import { getProducts, getProductsByCategory } from "@/lib/products";
 import type { Metadata, ResolvingMetadata } from 'next';
 import StructuredData from "./StructedData";
+import { CATEGORY_DETAILS } from "@/lib/categoryContent";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -85,6 +86,17 @@ export default async function CategoryPage({ params }: Props) {
     ],
   };
 
+  const categoryDetail = CATEGORY_DETAILS[slug.toLowerCase()];
+  const faqJsonLd = categoryDetail && {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: categoryDetail.faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <>
       <CategoryClient products={allProducts} />
@@ -93,6 +105,12 @@ export default async function CategoryPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
     </>
   );
 }

@@ -10,6 +10,7 @@ interface PromoBannerProps {
 
 export default function PromoBanner({ allProducts }: PromoBannerProps) {
   const [selectedProduct, setSelectedProduct] = useState('');
+  const [optionsLoaded, setOptionsLoaded] = useState(false);
 
   const handleOrderClick = () => {
     if (selectedProduct) {
@@ -62,10 +63,10 @@ export default function PromoBanner({ allProducts }: PromoBannerProps) {
           <div className="flex flex-col  items-center md:items-start">
             <h4 className="text-lg font-semibold mb-2">Hızlı linkler</h4>
           <Link href="/categories/" className="text-sm text-gray-300 hover:text-blue-600">Tüm ürünler</Link>
-            <Link href="/categories/Velo" className="text-sm text-gray-300 hover:text-blue-600">Velo Snus</Link>
-            <Link href="/categories/Pablo" className="text-sm text-gray-300 hover:text-blue-600">Pablo Snus</Link>
-            <Link href="/categories/Garant" className="text-sm text-gray-300 hover:text-blue-600">Garant Snus</Link>
-            <Link href="/categories/Cuba" className="text-sm text-gray-300 hover:text-blue-600">Cuba Snus</Link>
+            <Link href="/categories/velo" className="text-sm text-gray-300 hover:text-blue-600">Velo Snus</Link>
+            <Link href="/categories/pablo" className="text-sm text-gray-300 hover:text-blue-600">Pablo Snus</Link>
+            <Link href="/categories/garant" className="text-sm text-gray-300 hover:text-blue-600">Garant Snus</Link>
+            <Link href="/categories/cuba" className="text-sm text-gray-300 hover:text-blue-600">Cuba Snus</Link>
 
           </div>
 
@@ -76,14 +77,16 @@ export default function PromoBanner({ allProducts }: PromoBannerProps) {
         <select
           value={selectedProduct}
           onChange={(e) => setSelectedProduct(e.target.value)}
+          onFocus={() => setOptionsLoaded(true)}
           className="w-full p-2 mb-4 rounded bg-white text-zinc-900"
         >
           <option value="">Bir ürün seçin</option>
-          {allProducts.map((product) => (
-            <option key={product.slug} value={product.title}>
-              {product.title}
-            </option>
-          ))}
+          {optionsLoaded &&
+            allProducts.map((product) => (
+              <option key={product.slug} value={product.title}>
+                {product.title}
+              </option>
+            ))}
         </select>
         <button
           onClick={handleOrderClick}

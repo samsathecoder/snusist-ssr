@@ -132,8 +132,7 @@ className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-g
           </div>
         </div>
 <div className="mt-12">
-  <h2 className="text-xl font-bold mb-4">Benzer Ürünler</h2>
-        {/* Benzer ürünler */}
+        {/* Benzer ürünler - başlık CategoryProductsCarousel içinde (kategoriye özel, SEO dostu) */}
         <CategoryProductsCarousel
           allProducts={allProducts}
           currentCategory={product.category}

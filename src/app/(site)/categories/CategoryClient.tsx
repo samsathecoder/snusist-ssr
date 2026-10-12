@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Product } from "@/types";
 import Image from "next/image";
 import { useParams } from "next/navigation";
+import { CATEGORY_DETAILS } from "@/lib/categoryContent";
 
 type Props = {
   products: Product[];
@@ -41,6 +42,8 @@ export default function CategoryClient({ products }: Props) {
   const categoryIntro = isAllCategories
     ? "Snusist'te Velo, Pablo, Cuba, Garant, Siberia, Killa, Odens, White Fox ve D.L.T.A gibi orijinal snus markalarını tek adreste bulabilirsiniz. Her markanın nikotin seviyesi ve aroma profili farklıdır; aşağıdaki kategorilerden size uygun markayı inceleyebilirsiniz."
     : CATEGORY_INTROS[slug.toLowerCase()];
+
+  const categoryDetail = CATEGORY_DETAILS[slug.toLowerCase()];
 
   const siteName = "Snusist";
   const pageTitle = slug === "" ? `Tüm Snus Markaları - ${siteName}` : `${slug} Snus - ${siteName}`;
@@ -108,6 +111,29 @@ export default function CategoryClient({ products }: Props) {
               </p>
             )}
 
+            {categoryDetail && (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+                <div className="flex items-center gap-3 bg-blue-50 rounded-xl p-3">
+                  <span className="text-2xl">🏍️</span>
+                  <span className="text-sm font-medium text-zinc-700">
+                    İstanbul içi aynı gün moto kurye
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 bg-blue-50 rounded-xl p-3">
+                  <span className="text-2xl">📦</span>
+                  <span className="text-sm font-medium text-zinc-700">
+                    %100 gizli ve discreet paketleme
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 bg-blue-50 rounded-xl p-3">
+                  <span className="text-2xl">💳</span>
+                  <span className="text-sm font-medium text-zinc-700">
+                    Moto kuryede kapıda ödeme
+                  </span>
+                </div>
+              </div>
+            )}
+
             {filteredProducts.length === 0 ? (
               <p className="text-center text-gray-500 text-lg">Bu kategoriye ait ürün bulunamadı.</p>
             ) : (
@@ -139,6 +165,35 @@ export default function CategoryClient({ products }: Props) {
                     </div>
                   </div>
                 ))}
+              </div>
+            )}
+
+            {categoryDetail && (
+              <div className="mt-12 max-w-3xl">
+                <h2 className="text-2xl font-bold mb-4 text-zinc-900">
+                  {slug.charAt(0).toUpperCase() + slug.slice(1)} Snus Hakkında
+                </h2>
+                <div className="text-zinc-600 text-sm md:text-base leading-relaxed space-y-4">
+                  {categoryDetail.longText.split("\n\n").map((paragraph, i) => (
+                    <p key={i}>{paragraph}</p>
+                  ))}
+                </div>
+
+                <h2 className="text-2xl font-bold mt-10 mb-4 text-zinc-900">
+                  Sık Sorulan Sorular
+                </h2>
+                <div className="space-y-4">
+                  {categoryDetail.faq.map((item) => (
+                    <div key={item.question} className="bg-gray-50 rounded-xl p-4">
+                      <h3 className="font-semibold text-zinc-900 mb-1">
+                        {item.question}
+                      </h3>
+                      <p className="text-zinc-600 text-sm leading-relaxed">
+                        {item.answer}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </section>
